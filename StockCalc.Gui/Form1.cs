@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockCalc.Gui.UserControl;
 
 namespace StockCalc.Gui
 {
@@ -15,6 +16,63 @@ namespace StockCalc.Gui
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnGoldenCross_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(ucGoldenCross.Instance))
+            {
+                panel1.Controls.Add(ucGoldenCross.Instance);
+                panel2.Controls.Add(ucGoldenCrossDis.Instance);
+                ucGoldenCrossDis.Instance.Dock = DockStyle.Fill;
+                ucGoldenCrossDis.Instance.BringToFront();
+                ucGoldenCross.Instance.Dock = DockStyle.Fill;
+                ucGoldenCross.Instance.BringToFront();
+            }
+
+            else
+            {
+                ucGoldenCross.Instance.BringToFront();
+                ucGoldenCrossDis.Instance.BringToFront();
+            }
+        }
+
+        private void btnStockHolding_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(ucStockHolding.Instance))
+            {
+                panel1.Controls.Add(ucStockHolding.Instance);
+                panel2.Controls.Add(UcStockHoldingDis.Instance);
+                UcStockHoldingDis.Instance.Dock = DockStyle.Fill;
+                UcStockHoldingDis.Instance.BringToFront();
+                ucStockHolding.Instance.Dock = DockStyle.Fill;
+                ucStockHolding.Instance.BringToFront();
+            }
+
+            else
+            {
+                ucStockHolding.Instance.BringToFront();
+                UcStockHoldingDis.Instance.BringToFront();
+            }
+        }
+
+        private void btnPer_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(ucPer.Instance))
+            {
+                panel1.Controls.Add(ucPer.Instance);
+                panel2.Controls.Add(ucPerDis.Instance);
+                ucPer.Instance.Dock = DockStyle.Fill;
+                ucPer.Instance.BringToFront();
+                ucPerDis.Instance.Dock = DockStyle.Fill;
+                ucPerDis.Instance.BringToFront();
+            }
+
+            else
+            {
+                ucPer.Instance.BringToFront();
+                ucPerDis.Instance.BringToFront();
+            }
         }
     }
 }
