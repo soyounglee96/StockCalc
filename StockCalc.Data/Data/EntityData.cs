@@ -59,6 +59,10 @@ namespace StockCalc.Data.Data
             context.SaveChanges();
         }
 
+        //SelectBY
+
+
 
     }
 }
+
