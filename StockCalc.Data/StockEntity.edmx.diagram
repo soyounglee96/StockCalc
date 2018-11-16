@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08cc8ddcf60645adbfc0e495cf70a232" Name="Diagram1">
+        <EntityTypeShape EntityType="StockCalcModel.Price" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockCalcModel.Result" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockCalcModel.Stock" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockCalcModel.Strategy" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockCalcModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockCalcModel.Trade" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="StockCalcModel.FK_Price_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="StockCalcModel.FK_Result_Strategy" ManuallyRouted="false" />
+        <AssociationConnector Association="StockCalcModel.FK_Trade_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="StockCalcModel.FK_Trade_Strategy" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
