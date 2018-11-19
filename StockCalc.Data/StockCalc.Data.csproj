@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Data\DataRepository.cs" />
     <Compile Include="Data\EntityData.cs" />
     <Compile Include="Data\PriceData.cs" />
