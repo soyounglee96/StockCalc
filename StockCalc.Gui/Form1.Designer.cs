@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnGoldenCross = new System.Windows.Forms.Button();
             this.btnStockHolding = new System.Windows.Forms.Button();
             this.btnPer = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,15 +49,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-          
-            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
-          
-            this.stockIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockCalcDataSet = new StockCalc.Gui.StockCalcDataSet();
+            this.stockTableAdapter = new StockCalc.Gui.StockCalcDataSetTableAdapters.StockTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-
             ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGoldenCross
@@ -91,16 +89,16 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(30, 111);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(530, 300);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -109,16 +107,17 @@
             // 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.stockIdDataGridViewTextBoxColumn,
-            this.stockNameDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.stockBindingSource;
+            this.dataGridView1.DataSource = this.stockCalcDataSet;
             this.dataGridView1.Location = new System.Drawing.Point(609, 151);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(293, 287);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // stockBindingSource
+            // 
+            this.stockBindingSource.CurrentChanged += new System.EventHandler(this.stockBindingSource_CurrentChanged);
             // 
             // label1
             // 
@@ -211,18 +210,14 @@
             this.panel2.Size = new System.Drawing.Size(530, 30);
             this.panel2.TabIndex = 0;
             // 
-      
-            // stockIdDataGridViewTextBoxColumn
+            // stockCalcDataSet
             // 
-            this.stockIdDataGridViewTextBoxColumn.DataPropertyName = "StockId";
-            this.stockIdDataGridViewTextBoxColumn.HeaderText = "StockId";
-            this.stockIdDataGridViewTextBoxColumn.Name = "stockIdDataGridViewTextBoxColumn";
+            this.stockCalcDataSet.DataSetName = "StockCalcDataSet";
+            this.stockCalcDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // stockNameDataGridViewTextBoxColumn
+            // stockTableAdapter
             // 
-            this.stockNameDataGridViewTextBoxColumn.DataPropertyName = "StockName";
-            this.stockNameDataGridViewTextBoxColumn.HeaderText = "StockName";
-            this.stockNameDataGridViewTextBoxColumn.Name = "stockNameDataGridViewTextBoxColumn";
+            this.stockTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 
@@ -250,7 +245,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,9 +272,8 @@
         private System.Windows.Forms.Panel panel2;
 
         private System.Windows.Forms.BindingSource stockBindingSource;
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockNameDataGridViewTextBoxColumn;
+        private StockCalcDataSet stockCalcDataSet;
+        private StockCalcDataSetTableAdapters.StockTableAdapter stockTableAdapter;
     }
 }
 

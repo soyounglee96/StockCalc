@@ -14,7 +14,8 @@ namespace StockCalc.Cui
     {
         static void Main(string[] args)
         {
-        
+     
+
         }
     }
     }

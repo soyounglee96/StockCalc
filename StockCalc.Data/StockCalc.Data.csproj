@@ -60,69 +60,63 @@
     <Compile Include="Data\TradeData.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="Price.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Stock.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="StockCalcEntities.cs" />
-    <Compile Include="StockEntity.Context.cs">
+    <Compile Include="StockCalcEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StockEntity.Context.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="StockEntity.cs">
+    <Compile Include="StockCalcEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="StockEntity.Designer.cs">
+    <Compile Include="StockCalcEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StockEntity.edmx</DependentUpon>
+      <DependentUpon>StockCalcEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Strategy.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Trade.cs">
-      <DependentUpon>StockEntity.tt</DependentUpon>
+      <DependentUpon>StockCalcEntity.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="StockEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StockEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="StockEntity.edmx.diagram">
-      <DependentUpon>StockEntity.edmx</DependentUpon>
+    <EntityDeploy Include="StockCalcEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StockCalcEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StockCalcEntity.edmx.diagram">
+      <DependentUpon>StockCalcEntity.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="StockEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StockEntity.Context.cs</LastGenOutput>
-      <DependentUpon>StockEntity.edmx</DependentUpon>
-    </Content>
-    <Content Include="StockEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StockEntity.edmx</DependentUpon>
-      <LastGenOutput>StockEntity.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="StockCalcEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StockCalcEntity.edmx</DependentUpon>
+      <LastGenOutput>StockCalcEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="StockCalcEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StockCalcEntity.edmx</DependentUpon>
+      <LastGenOutput>StockCalcEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

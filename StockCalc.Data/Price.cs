@@ -15,10 +15,11 @@ namespace StockCalc.Data
     public partial class Price
     {
         public System.DateTime Date { get; set; }
-        public int StockId { get; set; }
+        public string StockId { get; set; }
         public double Close { get; set; }
-        public double PER { get; set; }
+        public Nullable<double> PER { get; set; }
         public double StockHolding { get; set; }
+        public double MarketCap { get; set; }
     
         public virtual Stock Stock { get; set; }
     }

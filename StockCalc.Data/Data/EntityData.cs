@@ -149,18 +149,22 @@ namespace StockCalc.Data.Data
         #endregion
 
         #region select
+
         /// <summary>
         ///     모든 선택식의 결과를 반환한다.
         /// </summary>
         /// <typeparam name="R"> 선택 형식 </typeparam>
         /// <param name="select"> 선택식 </param>
         /// <returns> 엔터티의 리스트 </returns>
-        public virtual List<R> Select<R>(Expression<Func<T, R>> select)
+        public virtual List<R> Select<R>(Expression<Func<T, R>> @select)
         {
             return Select<T, R>(null, null, false, 0, int.MaxValue, select);
         }
 
-
+        public List<T> Select()
+        {
+            return CreateContext().Set<T>().ToList();
+        }
 
         /// <summary>
         ///     조건식에 맞는 선택식의 결과를 반환한다.

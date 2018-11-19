@@ -15,7 +15,7 @@ namespace StockCalc.Data
     public partial class Trade
     {
         public int StrategyId { get; set; }
-        public int StockId { get; set; }
+        public string StockId { get; set; }
         public System.DateTime BuyDate { get; set; }
         public double BuyPrice { get; set; }
         public Nullable<System.DateTime> SellDate { get; set; }

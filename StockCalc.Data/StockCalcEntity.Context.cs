@@ -29,7 +29,6 @@ namespace StockCalc.Data
         public virtual DbSet<Result> Results { get; set; }
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<Strategy> Strategies { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Trade> Trades { get; set; }
     }
 }
