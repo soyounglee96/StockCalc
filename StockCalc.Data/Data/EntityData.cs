@@ -160,10 +160,7 @@ namespace StockCalc.Data.Data
             return Select<T, R>(null, null, false, 0, int.MaxValue, select);
         }
 
-        public List<T> Select()
-        {
-            return CreateContext().Set<T>().ToList();
-        }
+
 
         /// <summary>
         ///     조건식에 맞는 선택식의 결과를 반환한다.

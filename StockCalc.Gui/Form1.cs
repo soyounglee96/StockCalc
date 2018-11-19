@@ -76,14 +76,15 @@ namespace StockCalc.Gui
                 ucPerDis.Instance.BringToFront();
             }
 
-       
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+            List<Stock> result = new List<Stock>();
 
+            result = DataRepository.Stock.Select();
         }
     }
 }

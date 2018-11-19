@@ -48,14 +48,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.stockCalcDataSet = new StockCalc.Gui.StockCalcDataSet();
+          
             this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stockTableAdapter = new StockCalc.Gui.StockCalcDataSetTableAdapters.StockTableAdapter();
+          
             this.stockIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).BeginInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,20 +211,7 @@
             this.panel2.Size = new System.Drawing.Size(530, 30);
             this.panel2.TabIndex = 0;
             // 
-            // stockCalcDataSet
-            // 
-            this.stockCalcDataSet.DataSetName = "StockCalcDataSet";
-            this.stockCalcDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // stockBindingSource
-            // 
-            this.stockBindingSource.DataMember = "Stock";
-            this.stockBindingSource.DataSource = this.stockCalcDataSet;
-            // 
-            // stockTableAdapter
-            // 
-            this.stockTableAdapter.ClearBeforeFill = true;
-            // 
+      
             // stockIdDataGridViewTextBoxColumn
             // 
             this.stockIdDataGridViewTextBoxColumn.DataPropertyName = "StockId";
@@ -263,8 +250,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,9 +274,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private StockCalcDataSet stockCalcDataSet;
+
         private System.Windows.Forms.BindingSource stockBindingSource;
-        private StockCalcDataSetTableAdapters.StockTableAdapter stockTableAdapter;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn stockIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockNameDataGridViewTextBoxColumn;
     }
