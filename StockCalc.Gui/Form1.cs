@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StockCalc.Gui.UserControl;
+using StockCalc.Data;
+using StockCalc.Data.Data;
 
 namespace StockCalc.Gui
 {
@@ -73,6 +75,15 @@ namespace StockCalc.Gui
                 ucPer.Instance.BringToFront();
                 ucPerDis.Instance.BringToFront();
             }
+
+       
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
+
         }
     }
 }

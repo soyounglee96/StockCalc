@@ -8,5 +8,6 @@ namespace StockCalc.Data
 {
     public class Class1
     {
+
     }
 }
