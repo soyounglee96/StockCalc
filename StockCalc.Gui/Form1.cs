@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using StockCalc.Gui.UserControl;
 using HtmlAgilityPack;
+using StockCalc.Data;
+using StockCalc.Data.Data;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+
+
 
 namespace StockCalc.Gui
 {
@@ -84,7 +88,7 @@ namespace StockCalc.Gui
 
             //sise_market_Data();
             //coinfo_Data();
-
+ 
         }
         //삼성전자 코드번호 따오는
         private void coinfo_Data()
@@ -107,6 +111,7 @@ namespace StockCalc.Gui
 
 
         }
+
 
         private void sise_market_Data()
         {
@@ -136,6 +141,48 @@ namespace StockCalc.Gui
 
                     var MarketCap = i.ChildNodes[13].FirstChild.InnerHtml;
                     textBox4.AppendText(MarketCap + "\n");
+                }
+            }
+        }
+        private void sise_market_Data1()
+        {
+            //textBox4.Clear();
+            for (int j = 1; j <= 2; j++)
+            {
+
+                web.Encoding = Encoding.Default;
+
+                string sise_url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + j;
+                var sise_html = web.DownloadString(sise_url);
+
+                document.LoadHtml(sise_html);
+                var sise_tbody = document.DocumentNode.SelectSingleNode(
+                    "//*[@id=\"contentarea\"]/div[3]/table[1]/tbody");
+
+                var sise_tr = sise_tbody.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
+                    .ToList();
+
+                foreach (var i in sise_tr)
+                {
+                    Price price = new Price();
+                    var Per = i.ChildNodes[21].FirstChild.InnerHtml;
+
+                    if (Per == "N/A") { continue; }
+
+                    //textBox4.AppendText(Per + "\n");
+
+                    var MarketCap = i.ChildNodes[13].FirstChild.InnerHtml;
+
+                    var StockName = i.ChildNodes[3].FirstChild.InnerHtml;
+                    price.PER = float.Parse(Per);
+
+                    StocksData stocksData = new StocksData();
+                    var codeid = stocksData.stockCode(StockName);
+
+                    DataRepository.Price.Update(price);
+
+
+
                 }
             }
         }

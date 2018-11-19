@@ -145,6 +145,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\StockCalc.Data\StockCalc.Data.csproj">
+      <Project>{47674f6c-c48a-44e1-8e15-dbef7cf7ae66}</Project>
+      <Name>StockCalc.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
