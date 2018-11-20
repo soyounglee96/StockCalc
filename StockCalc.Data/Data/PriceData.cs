@@ -8,7 +8,7 @@ namespace StockCalc.Data.Data
 {
     public class PriceData : EntityData<Price>
     {
-        private List<Price> PerRange(float lowPer, float highPer)
+        public List<Price> PerRange(float lowPer, float highPer)
         {
             var context = CreateContext();
             var query = from x in context.Prices
@@ -17,7 +17,7 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
-        private List<Price> StockHolding(float holdings)
+        public List<Price> StockHolding(float holdings)
         {
             var context = CreateContext();
             var query = from x in context.Prices
@@ -26,5 +26,13 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
+        public List<Price> dateCheck(string date)
+        {
+            var context = CreateContext();
+            var query = from x in context.Prices
+                where x.Date.Equals(date)
+                select x;
+            return query.ToList();
+        }
     }
 }

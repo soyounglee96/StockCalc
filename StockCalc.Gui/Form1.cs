@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using StockCalc.Gui.UserControl;
-using HtmlAgilityPack;
 using StockCalc.Data;
 using StockCalc.Data.Data;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
-
+using StockData = StockCalc.Data.Data.StockData;
 
 
 namespace StockCalc.Gui
@@ -22,7 +17,7 @@ namespace StockCalc.Gui
     public partial class Form1 : Form
     {
         WebClient web = new WebClient();
-        HtmlDocument document = new HtmlDocument();
+
 
 
         public Form1()
@@ -66,6 +61,8 @@ namespace StockCalc.Gui
                 ucStockHolding.Instance.BringToFront();
                 UcStockHoldingDis.Instance.BringToFront();
             }
+
+            MessageBox.Show("test");
         }
 
         private void btnPer_Click(object sender, EventArgs e)
@@ -86,137 +83,155 @@ namespace StockCalc.Gui
                 ucPerDis.Instance.BringToFront();
             }
 
-            //sise_market_Data();
+            sise_market_Data1();
             //coinfo_Data();
- 
-        }
-        //삼성전자 코드번호 따오는
-        private void coinfo_Data()
-        {
-            textBox4.Clear();
-            
-
-                web.Encoding = Encoding.Default;
-
-                string url = "https://finance.naver.com/item/coinfo.nhn?code=005930" ;
-                var html = web.DownloadString(url);
-            //*[@id="middle"]/div[1]/div[1]/div
-            document.LoadHtml(html);
-                var tbody = document.DocumentNode.SelectSingleNode(
-                    "//*[@id=\"middle\"]/div[1]/div[1]/div");
-
-            var tr = tbody.ChildNodes[1].FirstChild;
-
-            textBox4.Text = tr.InnerText;
-
 
         }
 
 
-        private void sise_market_Data()
-        {
-            textBox4.Clear();
-            for (int j = 1; j <= 2; j++)
-            {
-
-                web.Encoding = Encoding.Default;
-
-                string url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + j;
-                var html = web.DownloadString(url);
-
-                document.LoadHtml(html);
-                var tbody = document.DocumentNode.SelectSingleNode(
-                    "//*[@id=\"contentarea\"]/div[3]/table[1]/tbody"); 
-
-                var tr = tbody.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
-                    .ToList();
-
-                foreach (var i in tr)
-                {
-                    var Per = i.ChildNodes[21].FirstChild.InnerHtml;
-
-                    if (Per == "N/A"){ Per = "0"; }
-
-                    textBox4.AppendText(Per + "\n");
-
-                    var MarketCap = i.ChildNodes[13].FirstChild.InnerHtml;
-                    textBox4.AppendText(MarketCap + "\n");
-                }
-            }
-        }
         private void sise_market_Data1()
         {
-            //textBox4.Clear();
-            for (int j = 1; j <= 2; j++)
+            Price price = new Price();
+            PriceData priceData = new PriceData();
+            StockData stockData = new StockData();
+            StockCalcEntities db = new StockCalcEntities();
+            HtmlDocument document;
+            web.Encoding = Encoding.Default;
+
+            //시총페이지 
+            for (int sise_page = 1; sise_page <= 1; sise_page++)
             {
+                string url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + sise_page;
+                var html = web.DownloadString(url);
+                document = new HtmlDocument();
+                document.LoadHtml(html);
 
-                web.Encoding = Encoding.Default;
-
-                string sise_url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + j;
-                var sise_html = web.DownloadString(sise_url);
-
-                document.LoadHtml(sise_html);
-                var sise_tbody = document.DocumentNode.SelectSingleNode(
-                    "//*[@id=\"contentarea\"]/div[3]/table[1]/tbody");
+                var sise_tbody = document.DocumentNode.SelectSingleNode("//*[@id=\"contentarea\"]/div[3]/table[1]/tbody");
 
                 var sise_tr = sise_tbody.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
                     .ToList();
 
                 foreach (var i in sise_tr)
                 {
-                    Price price = new Price();
-                    var Per = i.ChildNodes[21].FirstChild.InnerHtml;
+                    var codeName = i.ChildNodes[3].FirstChild.InnerHtml;
 
-                    if (Per == "N/A") { continue; }
+                    foreach (var check in stockData.Select())
+                    {
+                        if (check.StockName.Equals(codeName))
 
-                    //textBox4.AppendText(Per + "\n");
+                        {
+                            var stockCodeFromCodeName = stockData.stockCode(codeName);
+                            //종목당 자료페이지
+                            for (int page = 1; page <= 1; page++)
+                            {
+                                string frgn_url = "https://finance.naver.com/item/frgn.nhn?code=" + stockCodeFromCodeName[0] + "&page=" + page;
+                                var frgn_html = web.DownloadString(frgn_url);
+                                HtmlDocument frgn_document;
+                                frgn_document = new HtmlDocument();
+                                frgn_document.LoadHtml(frgn_html);
+                                //주식수
+                                var frgn_tradeStockHoldings =
+                                    frgn_document.DocumentNode.SelectSingleNode("//*[@id=\"tab_con1\"]/div[1]/table/tr[3]");
 
-                    var MarketCap = i.ChildNodes[13].FirstChild.InnerHtml;
+                                var frgn_trade = frgn_tradeStockHoldings.ChildNodes[3].FirstChild.InnerHtml;
+                                if (frgn_trade == "N/A")
+                                {
+                                    frgn_trade = "0";
+                                }
 
-                    var StockName = i.ChildNodes[3].FirstChild.InnerHtml;
-                    price.PER = float.Parse(Per);
+                                //per krx
+                                var frgn_eps = frgn_document.DocumentNode.SelectSingleNode("//*[@id=\"tab_con1\"]/div[4]/table/tr[1]/td/em[2]").InnerHtml;
 
-                    StocksData stocksData = new StocksData();
-                    var codeid = stocksData.stockCode(StockName);
+                                //코드번호
+                                var frgn_code = frgn_document.DocumentNode
+                                    .SelectSingleNode("//*[@id=\"middle\"]/div[1]/div[1]/div/span[1]").InnerHtml;
 
-                    DataRepository.Price.Update(price);
+                                var frgn_table = frgn_document.DocumentNode.SelectSingleNode(
+                                    "//*[@id=\"content\"]/div[2]/table[1]");
+
+                                var frgn_tbody = frgn_table.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
+                                    .ToList();
+
+                                //코드번호로 부터 자료 크롤링
+                                foreach (var frgn_i in frgn_tbody)
+                                {
+                                    //날짜
+                                    var date = frgn_i.ChildNodes[1].FirstChild.InnerHtml;
+
+                                    DateTime dateTime = DateTime.ParseExact(date,"yyyy.MM.dd",null);
+                                    //종가
+                                    var lastPrice = float.Parse(frgn_i.ChildNodes[3].FirstChild.InnerHtml);
+
+                                    //외국인 보유율
+                                    var stockHoldings = frgn_i.ChildNodes[17].FirstChild.InnerHtml;
+                                    var search = "%";
+                                    var sub_stockHoldings =
+                                        float.Parse(stockHoldings.Substring(0, stockHoldings.IndexOf(search)));
+
+                                    price.Date = dateTime;
+                                    price.Close = lastPrice;
+                                    price.StockHolding = sub_stockHoldings;
+
+                                    price.StockId = stockCodeFromCodeName[0];
+                                    price.MarketCap = float.Parse(frgn_trade) * lastPrice;
+
+                                    try
+                                    {
+                                        if (frgn_eps != "N/A")
+                                        {
+                                            price.PER = lastPrice / float.Parse(frgn_eps);
+
+                                        }
+                                        else
+                                        {
+                                            price.PER = 0;
+                                        }
 
 
+                                        var priceDate = price.Date.ToString("yyyy.MM.dd");
 
+                                        Console.WriteLine();
+
+                                        if (!(priceDate.Contains(date) && price.StockId.Contains(frgn_code)))
+                                        {
+                                            DataRepository.Price.Insert(price);
+                                        }
+                                        else
+                                        {
+                                            DataRepository.Price.Update(price);
+                                        }
+                                    }
+                                    catch (DbUpdateConcurrencyException)
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox4.Clear();
-            web.Encoding = Encoding.Default;
+            //    web.Encoding = Encoding.Default;
 
+            //    string url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + 1; 
+            //    var html = web.DownloadString(url);
 
-            //string url = "https://finance.naver.com/sise/sise_market_sum.nhn?&page=" + 1; <--
-            string url = "https://finance.naver.com/item/sise_day.nhn?code=005930";
-            var html = web.DownloadString(url);
+            //    document.LoadHtml(html);
+            //    var sise_tbody = document.DocumentNode.SelectSingleNode("//*[@id=\"contentarea\"]/div[3]/table[1]/tbody"); 
 
-            document.LoadHtml(html);
+            //    var sise_tr = sise_tbody.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
+            //        .ToList();
 
-            //*[@id="middle"]/div[1]/div[1]/div/span[1]
-            //var code = document.DocumentNode.SelectSingleNode("//*[@id=\"middle\"]/div[1]/div[1]/div"); // 주소가 다름
-            //var tbody = document.DocumentNode.SelectSingleNode("//*[@id=\"contentarea\"]/div[3]/table[1]/tbody"); <--
-            var tbody = document.DocumentNode.SelectSingleNode("/html/body/table[1]"); //두번째 웹사이트
-
-            var tr = tbody.ChildNodes.Where(x => x.GetAttributeValue("onmouseover", "").Equals("mouseOver(this)"))
-                .ToList();
-            //var tr = tbody.ChildNodes.Where(x => x.Name == "tr").ToList();
-
-            foreach (var i in tr)
-            {
-                var day = i.ChildNodes[3].FirstChild.InnerHtml;
-                textBox4.AppendText(day + "\n");
-                //textBox4.Text= day;
-                //DateTime dateTime = DateTime.ParseExact(day,"yy.MM.dd",null);
-                //var count = i.ChildNodes[3].FirstChild.InnerHtml;
-            }
-
+            //    foreach (var i in sise_tr)
+            //    {
+            //        var name = i.ChildNodes[3].FirstChild.InnerHtml;
+            //    }
         }
     }
 }

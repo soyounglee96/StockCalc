@@ -34,14 +34,14 @@ namespace StockCalc.Data.Data
             }
         }
 
-        private static StocksData _stock;
+        private static StockData _stock;
 
-        public static StocksData Stock
+        public static StockData Stock
         {
             get
             {
                 if (_stock == null)
-                    _stock = new StocksData();
+                    _stock = new StockData();
 
                 return _stock;
             }
