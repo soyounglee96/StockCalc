@@ -26,11 +26,11 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
-        public List<Price> dateCheck(string date)
+        public List<Price> dateCheck(DateTime date, string id)
         {
             var context = CreateContext();
             var query = from x in context.Prices
-                where x.Date.Equals(date)
+                where x.Date.Equals(date)&&x.StockId.Equals(id)
                 select x;
             return query.ToList();
         }

@@ -24,45 +24,14 @@ namespace StockCalc.Gui
             InitializeComponent();
         }
 
-        //private void btnGoldenCross_Click(object sender, EventArgs e)
-        //{
-        //    if (!panel1.Controls.Contains(ucGoldenCross.Instance))
-        //    {
-        //        panel1.Controls.Add(ucGoldenCross.Instance);
-        //        panel2.Controls.Add(ucGoldenCrossDis.Instance);
-        //        ucGoldenCrossDis.Instance.Dock = DockStyle.Fill;
-        //        ucGoldenCrossDis.Instance.BringToFront();
-        //        ucGoldenCross.Instance.Dock = DockStyle.Fill;
-        //        ucGoldenCross.Instance.BringToFront();
-        //    }
-
-        //    else
-        //    {
-        //        ucGoldenCross.Instance.BringToFront();
-        //        ucGoldenCrossDis.Instance.BringToFront();
-        //    }
-        //}
-
-        //private void btnStockHolding_Click(object sender, EventArgs e)
-        //{
-        //    
-        //    MessageBox.Show("test");
-        //}
-
-        //private void btnPer_Click(object sender, EventArgs e)
-        //{
-        //    
-
-        //}
-
 
         private void sise_market_Data1()
         {
             Price price = new Price();
             PriceData priceData = new PriceData();
             StockData stockData = new StockData();
-            
-         
+
+
             HtmlDocument document;
             web.Encoding = Encoding.Default;
 
@@ -90,7 +59,7 @@ namespace StockCalc.Gui
                         {
                             var stockCodeFromCodeName = stockData.stockCode(codeName);
                             //종목당 자료페이지
-                            for (int page = 1; page <= 10; page++)
+                            for (int page = 1; page <= 50; page++)
                             {
                                 string frgn_url = "https://finance.naver.com/item/frgn.nhn?code=" + stockCodeFromCodeName[0] + "&page=" + page;
                                 var frgn_html = web.DownloadString(frgn_url);
@@ -109,11 +78,7 @@ namespace StockCalc.Gui
 
                                 //per krx
                                 var frgn_eps = frgn_document.DocumentNode.SelectSingleNode("//*[@id=\"tab_con1\"]/div[4]/table/tr[1]/td/em[2]").InnerHtml;
-                                if (frgn_eps == "N/A")
-                                {
-                                    frgn_eps = "0";
-
-                                }
+                                
                                 //코드번호
                                 var frgn_code = frgn_document.DocumentNode
                                     .SelectSingleNode("//*[@id=\"middle\"]/div[1]/div[1]/div/span[1]").InnerHtml;
@@ -132,9 +97,9 @@ namespace StockCalc.Gui
                                     if(date == "&nbsp;") { break;}
                                     DateTime dateTime = DateTime.ParseExact(date, "yyyy.MM.dd", null);
                                     var string_dateTime = dateTime.ToString("yyyy.MM.dd");
-                                    
+
                                     //종가
-                                    var lastPrice = double.Parse(frgn_i.ChildNodes[3].FirstChild.InnerHtml);
+                                    var lastPrice = float.Parse(frgn_i.ChildNodes[3].FirstChild.InnerHtml);
 
                                     //외국인 보유율
                                     var stockHoldings = frgn_i.ChildNodes[17].FirstChild.InnerHtml;
@@ -142,17 +107,22 @@ namespace StockCalc.Gui
                                     var sub_stockHoldings =
                                         double.Parse(stockHoldings.Substring(0, stockHoldings.IndexOf(search)));
 
-                                    price.Date = dateTime;
-                                    price.Close = lastPrice;
-                                    price.StockHolding = sub_stockHoldings;
-
-                                    price.StockId = stockCodeFromCodeName[0];
-                                    price.MarketCap = double.Parse(frgn_trade) * lastPrice;
+                                    var priceDate = price.Date.ToString("yyyy.MM.dd");
 
                                    
+                                    
+                                        price.Date = dateTime;
+                                        price.Close = lastPrice;
+                                        price.StockHolding = sub_stockHoldings;
+
+                                        price.StockId = stockCodeFromCodeName[0];
+                                        price.MarketCap = double.Parse(frgn_trade) * lastPrice;
+                                        
+
                                         if (frgn_eps != "N/A")
                                         {
-                                            price.PER = lastPrice / double.Parse(frgn_eps);
+                                            
+                                            price.PER = lastPrice / float.Parse(frgn_eps);
 
                                         }
                                         else
@@ -161,14 +131,31 @@ namespace StockCalc.Gui
                                         }
 
 
+                                        Console.WriteLine();
+
+
+                                    var m = priceData.dateCheck(dateTime,stockCodeFromCodeName[0]).Count;
+                                    if (m==0)
+                                    {
+                                        DataRepository.Price.Insert(price);
+                                    }
+                                    else
+                                    {
+                                        DataRepository.Price.Update(price);
+                                    }
                                     Console.WriteLine();
-                                    var priceDate = price.Date.ToString("yyyy.MM.dd");
-
-
-                                    if (!(priceDate.Equals(string_dateTime) && price.StockId.Equals(frgn_code)))
-                                        {
-                                            DataRepository.Price.Insert(price);
-                                        }
+                                        //if (priceDataDateCheck.Date.Equals(string_dateTime) &&
+                                        //      price.StockId.Equals(frgn_code))
+                                        //{
+                                        //    DataRepository.Price.Insert(price);
+                                        //}
+                                        //else
+                                        //{
+                                        //    DataRepository.Price.Update(price);
+                                        //}
+                                    
+                                    
+                                    
                                     //else
                                     //    DataRepository.Price.Update(price);
                                     //요거요거
