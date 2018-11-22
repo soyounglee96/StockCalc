@@ -30,7 +30,7 @@ namespace StockCalc.Gui
             Price price = new Price();
             PriceData priceData = new PriceData();
             StockData stockData = new StockData();
-
+            
 
             HtmlDocument document;
             web.Encoding = Encoding.Default;
@@ -143,23 +143,6 @@ namespace StockCalc.Gui
                                     {
                                         DataRepository.Price.Update(price);
                                     }
-                                    Console.WriteLine();
-                                        //if (priceDataDateCheck.Date.Equals(string_dateTime) &&
-                                        //      price.StockId.Equals(frgn_code))
-                                        //{
-                                        //    DataRepository.Price.Insert(price);
-                                        //}
-                                        //else
-                                        //{
-                                        //    DataRepository.Price.Update(price);
-                                        //}
-                                    
-                                    
-                                    
-                                    //else
-                                    //    DataRepository.Price.Update(price);
-                                    //요거요거
-
                                 }
                             }
                         }
@@ -231,9 +214,9 @@ namespace StockCalc.Gui
                 ucPer.Instance.BringToFront();
                 ucPerDis.Instance.BringToFront();
             }
-
-            //sise_market_Data1();
-            //coinfo_Data();
+            ucPer ucper = new ucPer();
+            ucper.ucPer_Data_Price();
+            dataGridView1.DataSource = ucper.ucPer_Data();
         }
     }
 }
