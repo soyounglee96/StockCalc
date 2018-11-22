@@ -9,7 +9,7 @@ namespace StockCalc.Data.Data
 {
     public abstract class EntityData<T> where T : class
     {
-
+        
         public static StockCalcEntities CreateContext()
         {
 

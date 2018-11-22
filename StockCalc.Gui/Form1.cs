@@ -134,7 +134,7 @@ namespace StockCalc.Gui
                                         Console.WriteLine();
 
 
-                                    var m = priceData.dateCheck(dateTime,stockCodeFromCodeName[0]).Count;
+                                    var m = priceData.DateCheck(dateTime,stockCodeFromCodeName[0]).Count;
                                     if (m==0)
                                     {
                                         DataRepository.Price.Insert(price);

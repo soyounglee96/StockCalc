@@ -71,5 +71,10 @@ namespace StockCalc.Gui.UserControl
 
             Console.WriteLine();
         }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

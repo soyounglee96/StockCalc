@@ -74,9 +74,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(17, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 15);
+            this.label1.Size = new System.Drawing.Size(125, 15);
             this.label1.TabIndex = 4;
-            this.label1.Text = "외국인 기관 보유량(%)";
+            this.label1.Text = "외국인 보유량(%)";
             // 
             // ucStockHolding
             // 
