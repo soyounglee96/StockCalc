@@ -217,6 +217,7 @@ namespace StockCalc.Gui
             ucPer ucper = new ucPer();
             ucper.ucPer_Data_Price();
             dataGridView1.DataSource = ucper.ucPer_Data();
+            
         }
     }
 }
