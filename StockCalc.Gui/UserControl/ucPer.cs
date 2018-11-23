@@ -34,42 +34,42 @@ namespace StockCalc.Gui.UserControl
             InitializeComponent();
         }
 
-       
 
-        public List<Price> ucPer_Data()
+
+        public void ucPer_Data()
         {
             PriceData priceData = new PriceData();
-            var per_low_num = float.Parse(numericUpDown2.Value.ToString());
-            var per_high_num = float.Parse(numericUpDown3.Value.ToString());
-            var perPriceList = priceData.PerRange(per_low_num, per_high_num);
-            return perPriceList;
-        }
-
-        public void ucPer_Data_Price()
-        {
-            PriceData priceData = new PriceData();
+            TradeData tradeData = new TradeData();
+            Strategy strategy = new Strategy();
+            Stock stock = new Stock();
             Price price = new Price();
+            Trade trade = new Trade();
+
+            int count = 0;
             var per_low_num = float.Parse(numericUpDown2.Value.ToString());
             var per_high_num = float.Parse(numericUpDown3.Value.ToString());
-            var perPriceList = priceData.PerRange(per_low_num, per_high_num);
-            List<Price> PricePerList = new List<Price>();
-            var sumPerLastPrice = 0.0;
-            DateTime sampleDate = DateTime.Now;
-            foreach (var ucPerData in perPriceList)
-            {
-                
-                if (sampleDate != ucPerData.Date)
-                {
-                    sampleDate = ucPerData.Date;
-                    
-                    //sumPerLastPriceList.Add(sumPerLastPrice);
-                }
-                //sumPerLastPrice += ucPerData.Close;
-                
-                Console.WriteLine(sumPerLastPrice);
-            }
+            var per_countStock = Int32.Parse(numericUpDown1.Value.ToString());
+            DateTime dateTime = DateTime.Now;
 
-            Console.WriteLine();
+            var dateList = priceData.dateCheckList();
+            foreach (var time in dateList)
+            {
+                var perPriceList = priceData.PerRange(per_low_num, per_high_num, time, per_countStock);
+                Console.WriteLine();
+
+                foreach (var data in perPriceList)
+                {
+                    trade.StockId = data.StockId;
+                    trade.BuyDate = data.Date;
+                    trade.BuyPrice = data.Close;
+                    trade.SellDate = null;
+                    trade.SellPrice = null;
+                    trade.StrategyId = 3;
+                    trade.TradeER = 0.0;
+
+                    DataRepository.Trade.Insert(trade);
+                }
+            }
         }
     }
 }

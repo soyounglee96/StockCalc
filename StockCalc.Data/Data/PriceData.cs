@@ -8,21 +8,24 @@ namespace StockCalc.Data.Data
 {
     public class PriceData : EntityData<Price>
     {
-        public List<Price> PerRange(float lowPer, float highPer)
+        public List<Price> PerRange(float lowPer, float highPer, DateTime date , int count)
         {
             var context = CreateContext();
-            var query = from x in context.Prices
-                where x.PER >= lowPer && x.PER <= highPer
-                      orderby x.Date 
-                select x;
+            var query = (from x in (from x in context.Prices
+                    where x.PER >= lowPer && x.PER <= highPer
+                    orderby x.Date, x.PER
+                    select x)
+             where x.Date.Equals(date)
+                select x).Take(count);
             return query.ToList();
         }
-        public List<Price> PerBest(List<Price> list)
+
+        public List<Price> PerBest(DateTime date , int count )
         {
             var context = CreateContext();
-            var query = from x in context.Prices
-                        orderby x.PER
-                        select x;
+            var query = (from x in context.Prices
+                         where x.Date.Equals(date)
+                        select x).Take(count);
             return query.ToList();
         }
 
@@ -44,14 +47,22 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
-        public List<Price> dateCheckOnly(DateTime date)
+        public List<DateTime> dateCheckList()
         {
             var context = CreateContext();
-            var query = from x in context.Prices
-                where x.Date.Equals(date)
-                select x;
+            var query = (from x in context.Prices
+                select x.Date).Distinct();
             return query.ToList();
         }
+
+        //public List<double?> PerList(List<double?> per)
+        //{
+        //    var context = CreateContext();
+        //    var query = from x in context.Prices
+        //        orderby x.PER
+        //        select x;
+        //    return query.ToList();
+        //}
 
     }
 }

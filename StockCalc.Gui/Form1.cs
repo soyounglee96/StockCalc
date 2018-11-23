@@ -153,6 +153,11 @@ namespace StockCalc.Gui
 
         }
 
+        private void graphData()
+        {
+
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             sise_market_Data1();
@@ -214,9 +219,13 @@ namespace StockCalc.Gui
                 ucPer.Instance.BringToFront();
                 ucPerDis.Instance.BringToFront();
             }
-            ucPer ucper = new ucPer();
-            ucper.ucPer_Data_Price();
-            dataGridView1.DataSource = ucper.ucPer_Data();
+           ucPer ucPerData = new ucPer();
+           ucPerData.ucPer_Data();
+            TradeData tradeData = new TradeData();
+            //dataGridView1.DataSource = tradeData.Select();
+
+            dataGridView1.DataSource = tradeData.Select();
+
         }
     }
 }
