@@ -9,12 +9,12 @@ namespace StockCalc.Data
     public class DBContext
     {
         private const string ConnectionString =
-            "metadata=res://*/StockEntity.csdl|res://*/StockEntity.ssdl|res://*/StockEntity.msl;provider=System.Data.SqlClient;provider connection string=\"data source=402-30;initial catalog=StockCalc;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework\"";
+            "metadata=res://*/StockCalcEntity.csdl|res://*/StockCalcEntity.ssdl|res://*/StockCalcEntity.msl;provider=System.Data.SqlClient;provider connection string=\"data source=402-30;initial catalog=StockCalc;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework\"";
 
 
-        public static StockCalcEntities Create()
+        public static StockCalcEntities1 Create()
         {
-            StockCalcEntities context = new StockCalcEntities(ConnectionString);
+            StockCalcEntities1 context = new StockCalcEntities1(ConnectionString);
 
         
             return context;

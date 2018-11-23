@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Data;
-using StockCalc.Data;
-
 #pragma warning disable 1591
 
 namespace StockCalc.Gui {
@@ -24,9 +20,9 @@ namespace StockCalc.Gui {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("StockCalcDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("StockCalcDataSet1")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class StockCalcDataSet : global::System.Data.DataSet {
+    public partial class StockCalcDataSet1 : global::System.Data.DataSet {
         
         private PriceDataTable tablePrice;
         
@@ -50,7 +46,7 @@ namespace StockCalc.Gui {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public StockCalcDataSet() {
+        public StockCalcDataSet1() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -61,7 +57,7 @@ namespace StockCalc.Gui {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected StockCalcDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected StockCalcDataSet1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -199,7 +195,7 @@ namespace StockCalc.Gui {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            StockCalcDataSet cln = ((StockCalcDataSet)(base.Clone()));
+            StockCalcDataSet1 cln = ((StockCalcDataSet1)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -311,9 +307,9 @@ namespace StockCalc.Gui {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "StockCalcDataSet";
+            this.DataSetName = "StockCalcDataSet1";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/StockCalcDataSet.xsd";
+            this.Namespace = "http://tempuri.org/StockCalcDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablePrice = new PriceDataTable();
@@ -385,7 +381,7 @@ namespace StockCalc.Gui {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            StockCalcDataSet ds = new StockCalcDataSet();
+            StockCalcDataSet1 ds = new StockCalcDataSet1();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -722,7 +718,7 @@ namespace StockCalc.Gui {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StockCalcDataSet ds = new StockCalcDataSet();
+                StockCalcDataSet1 ds = new StockCalcDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1044,7 +1040,7 @@ namespace StockCalc.Gui {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StockCalcDataSet ds = new StockCalcDataSet();
+                StockCalcDataSet1 ds = new StockCalcDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1319,7 +1315,7 @@ namespace StockCalc.Gui {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StockCalcDataSet ds = new StockCalcDataSet();
+                StockCalcDataSet1 ds = new StockCalcDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1593,7 +1589,7 @@ namespace StockCalc.Gui {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StockCalcDataSet ds = new StockCalcDataSet();
+                StockCalcDataSet1 ds = new StockCalcDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1949,7 +1945,7 @@ namespace StockCalc.Gui {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StockCalcDataSet ds = new StockCalcDataSet();
+                StockCalcDataSet1 ds = new StockCalcDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2635,7 +2631,7 @@ namespace StockCalc.Gui {
         }
     }
 }
-namespace StockCalc.Gui.StockCalcDataSetTableAdapters {
+namespace StockCalc.Gui.StockCalcDataSet1TableAdapters {
     
     
     /// <summary>
@@ -2829,7 +2825,7 @@ SELECT Date, StockId, [Close], PER, StockHolding, MarketCap FROM Price WHERE (Da
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(StockCalcDataSet.PriceDataTable dataTable) {
+        public virtual int Fill(StockCalcDataSet1.PriceDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2842,9 +2838,9 @@ SELECT Date, StockId, [Close], PER, StockHolding, MarketCap FROM Price WHERE (Da
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StockCalcDataSet.PriceDataTable GetData() {
+        public virtual StockCalcDataSet1.PriceDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            StockCalcDataSet.PriceDataTable dataTable = new StockCalcDataSet.PriceDataTable();
+            StockCalcDataSet1.PriceDataTable dataTable = new StockCalcDataSet1.PriceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2852,14 +2848,14 @@ SELECT Date, StockId, [Close], PER, StockHolding, MarketCap FROM Price WHERE (Da
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet.PriceDataTable dataTable) {
+        public virtual int Update(StockCalcDataSet1.PriceDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet dataSet) {
+        public virtual int Update(StockCalcDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Price");
         }
         
@@ -3015,11 +3011,6 @@ SELECT Date, StockId, [Close], PER, StockHolding, MarketCap FROM Price WHERE (Da
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(double Close, global::System.Nullable<double> PER, double StockHolding, double MarketCap, System.DateTime Original_Date, string Original_StockId, double Original_Close, global::System.Nullable<double> Original_PER, double Original_StockHolding, double Original_MarketCap) {
             return this.Update(Original_Date, Original_StockId, Close, PER, StockHolding, MarketCap, Original_Date, Original_StockId, Original_Close, Original_PER, Original_StockHolding, Original_MarketCap);
-        }
-
-        public void Fill()
-        {
-            throw new System.NotImplementedException();
         }
     }
     
@@ -3209,7 +3200,7 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(StockCalcDataSet.ResultDataTable dataTable) {
+        public virtual int Fill(StockCalcDataSet1.ResultDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3222,9 +3213,9 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StockCalcDataSet.ResultDataTable GetData() {
+        public virtual StockCalcDataSet1.ResultDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            StockCalcDataSet.ResultDataTable dataTable = new StockCalcDataSet.ResultDataTable();
+            StockCalcDataSet1.ResultDataTable dataTable = new StockCalcDataSet1.ResultDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3232,14 +3223,14 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet.ResultDataTable dataTable) {
+        public virtual int Update(StockCalcDataSet1.ResultDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet dataSet) {
+        public virtual int Update(StockCalcDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Result");
         }
         
@@ -3521,7 +3512,7 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(StockCalcDataSet.StockDataTable dataTable) {
+        public virtual int Fill(StockCalcDataSet1.StockDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3534,9 +3525,9 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StockCalcDataSet.StockDataTable GetData() {
+        public virtual StockCalcDataSet1.StockDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            StockCalcDataSet.StockDataTable dataTable = new StockCalcDataSet.StockDataTable();
+            StockCalcDataSet1.StockDataTable dataTable = new StockCalcDataSet1.StockDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3544,14 +3535,14 @@ SELECT StrategyId, TDate, BaseMoney, CurrentValue, CurrentER FROM Result WHERE (
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet.StockDataTable dataTable) {
+        public virtual int Update(StockCalcDataSet1.StockDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet dataSet) {
+        public virtual int Update(StockCalcDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Stock");
         }
         
@@ -3861,7 +3852,7 @@ SELECT StrategyId, StrategyName FROM Strategy WHERE (StrategyId = @StrategyId)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(StockCalcDataSet.StrategyDataTable dataTable) {
+        public virtual int Fill(StockCalcDataSet1.StrategyDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3874,9 +3865,9 @@ SELECT StrategyId, StrategyName FROM Strategy WHERE (StrategyId = @StrategyId)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StockCalcDataSet.StrategyDataTable GetData() {
+        public virtual StockCalcDataSet1.StrategyDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            StockCalcDataSet.StrategyDataTable dataTable = new StockCalcDataSet.StrategyDataTable();
+            StockCalcDataSet1.StrategyDataTable dataTable = new StockCalcDataSet1.StrategyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3884,14 +3875,14 @@ SELECT StrategyId, StrategyName FROM Strategy WHERE (StrategyId = @StrategyId)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet.StrategyDataTable dataTable) {
+        public virtual int Update(StockCalcDataSet1.StrategyDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet dataSet) {
+        public virtual int Update(StockCalcDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Strategy");
         }
         
@@ -4209,7 +4200,7 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(StockCalcDataSet.TradeDataTable dataTable) {
+        public virtual int Fill(StockCalcDataSet1.TradeDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4222,9 +4213,9 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StockCalcDataSet.TradeDataTable GetData() {
+        public virtual StockCalcDataSet1.TradeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            StockCalcDataSet.TradeDataTable dataTable = new StockCalcDataSet.TradeDataTable();
+            StockCalcDataSet1.TradeDataTable dataTable = new StockCalcDataSet1.TradeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4232,14 +4223,14 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet.TradeDataTable dataTable) {
+        public virtual int Update(StockCalcDataSet1.TradeDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(StockCalcDataSet dataSet) {
+        public virtual int Update(StockCalcDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Trade");
         }
         
@@ -4609,7 +4600,7 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(StockCalcDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(StockCalcDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._stockTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Stock.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -4664,7 +4655,7 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(StockCalcDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(StockCalcDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._stockTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Stock.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -4714,7 +4705,7 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(StockCalcDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(StockCalcDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._tradeTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Trade.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -4788,7 +4779,7 @@ SELECT StrategyId, StockId, BuyDate, BuyPrice, SellDate, SellPrice, TradeER FROM
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(StockCalcDataSet dataSet) {
+        public virtual int UpdateAll(StockCalcDataSet1 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

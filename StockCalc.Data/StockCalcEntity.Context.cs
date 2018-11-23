@@ -12,11 +12,13 @@ namespace StockCalc.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class StockCalcEntities : DbContext
+    public partial class StockCalcEntities1 : DbContext
     {
-        public StockCalcEntities()
-            : base("name=StockCalcEntities")
+        public StockCalcEntities1()
+            : base("name=StockCalcEntities1")
         {
         }
     
@@ -30,5 +32,34 @@ namespace StockCalc.Data
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<Strategy> Strategies { get; set; }
         public virtual DbSet<Trade> Trades { get; set; }
+    
+        public virtual int InsertNotExist(Nullable<System.DateTime> date, string stockId, Nullable<double> close, Nullable<double> pER, Nullable<double> stockHolding, Nullable<double> marketCap)
+        {
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
+    
+            var stockIdParameter = stockId != null ?
+                new ObjectParameter("StockId", stockId) :
+                new ObjectParameter("StockId", typeof(string));
+    
+            var closeParameter = close.HasValue ?
+                new ObjectParameter("Close", close) :
+                new ObjectParameter("Close", typeof(double));
+    
+            var pERParameter = pER.HasValue ?
+                new ObjectParameter("PER", pER) :
+                new ObjectParameter("PER", typeof(double));
+    
+            var stockHoldingParameter = stockHolding.HasValue ?
+                new ObjectParameter("StockHolding", stockHolding) :
+                new ObjectParameter("StockHolding", typeof(double));
+    
+            var marketCapParameter = marketCap.HasValue ?
+                new ObjectParameter("MarketCap", marketCap) :
+                new ObjectParameter("MarketCap", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertNotExist", dateParameter, stockIdParameter, closeParameter, pERParameter, stockHoldingParameter, marketCapParameter);
+        }
     }
 }

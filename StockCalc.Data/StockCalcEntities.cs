@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StockCalc.Data
 {
-    public partial class StockCalcEntities
+    public partial class StockCalcEntities1
     {
-        public StockCalcEntities(string connectionString) : base(connectionString) { }
+        public StockCalcEntities1(string connectionString) : base(connectionString) { }
     }
 }

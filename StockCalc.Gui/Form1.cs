@@ -68,6 +68,9 @@ namespace StockCalc.Gui
                 ucPer.Instance.BringToFront();
                 ucPerDis.Instance.Dock = DockStyle.Fill;
                 ucPerDis.Instance.BringToFront();
+
+                priceDataBindingSource.DataSource = PriceData.GetPriceList();
+                
             }
 
             else
@@ -76,26 +79,45 @@ namespace StockCalc.Gui
                 ucPerDis.Instance.BringToFront();
             }
 
-            List<Stock> result = new List<Stock>();
-            result = DataRepository.Stock.Select(x => x);
 
 
         }
 
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: 이 코드는 데이터를 'stockCalcDataSet.Stock' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
-            /*
-            this.stockTableAdapter.Fill(result);
-            //this.stockCalcDataSet.Stock*/
+           
         }
 
         private void stockBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
-
+      
         }
 
-    
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void txtValue_TextChanged(object sender, EventArgs e)
+        {
+       
+        }
+        private void txtEarning_TextChanged(object sender, EventArgs e)
+        {
+       
+        }
+
+        public void OnResultclicked(int strategyID)
+        {
+            Result result = new Result();
+            result.CurrentER = Convert.ToDouble(txtEarning.Text);
+            result.CurrentValue = Convert.ToDouble(txtValue.Text);
+            result.TDate = DateTime.Today;
+            result.StrategyId = strategyID;
+            DataRepository.Result.Insert(result);
+        }
     }
 }

@@ -22,9 +22,9 @@ namespace StockCalc.Data.Data
             Debug.WriteLine(sql);
         }
 
-        protected StockCalcEntities CreateContext()
+        protected StockCalcEntities1 CreateContext()
         {
-            var context = new StockCalcEntities();
+            var context = new StockCalcEntities1();
             context.Database.Log = PrintSQL;
             context.Configuration.ProxyCreationEnabled = false;
 

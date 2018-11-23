@@ -30,5 +30,7 @@ namespace StockCalc.Gui.UserControl
         {
             InitializeComponent();
         }
+
+        //public List<>
     }
 }

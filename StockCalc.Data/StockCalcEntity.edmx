@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StockCalcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StockCalcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Price">
           <Key>
             <PropertyRef Name="Date" />
@@ -104,6 +104,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="InsertNotExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="StockId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Close" Type="float" Mode="In" />
+          <Parameter Name="PER" Type="float" Mode="In" />
+          <Parameter Name="StockHolding" Type="float" Mode="In" />
+          <Parameter Name="MarketCap" Type="float" Mode="In" />
+        </Function>
         <EntityContainer Name="StockCalcModelStoreContainer">
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
@@ -127,8 +135,7 @@
             <End Role="Trade" EntitySet="Trade" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StockCalcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -261,6 +268,14 @@
             <End Role="Strategy" EntitySet="Strategies" />
             <End Role="Trade" EntitySet="Trades" />
           </AssociationSet>
+          <FunctionImport Name="InsertNotExist">
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="StockId" Mode="In" Type="String" />
+            <Parameter Name="Close" Mode="In" Type="Double" />
+            <Parameter Name="PER" Mode="In" Type="Double" />
+            <Parameter Name="StockHolding" Mode="In" Type="Double" />
+            <Parameter Name="MarketCap" Mode="In" Type="Double" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -320,6 +335,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertNotExist" FunctionName="StockCalcModel.Store.InsertNotExist" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

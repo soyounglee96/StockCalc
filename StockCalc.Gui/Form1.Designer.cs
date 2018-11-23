@@ -37,24 +37,36 @@
             this.btnPer = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtBase = new System.Windows.Forms.TextBox();
+            this.txtValue = new System.Windows.Forms.TextBox();
+            this.txtEarning = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.closeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockHoldingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marketCapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stockCalcDataSet = new StockCalc.Gui.StockCalcDataSet();
-            this.stockTableAdapter = new StockCalc.Gui.StockCalcDataSetTableAdapters.StockTableAdapter();
+            this.stockCalcDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stockCalcDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.priceTableAdapter = new StockCalc.Gui.StockCalcDataSetTableAdapters.PriceTableAdapter();
+            this.priceDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSetBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGoldenCross
@@ -107,17 +119,20 @@
             // 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.stockCalcDataSet;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dateDataGridViewTextBoxColumn,
+            this.stockIdDataGridViewTextBoxColumn,
+            this.closeDataGridViewTextBoxColumn,
+            this.pERDataGridViewTextBoxColumn,
+            this.stockHoldingDataGridViewTextBoxColumn,
+            this.marketCapDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.priceBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(609, 151);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(293, 287);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // stockBindingSource
-            // 
-            this.stockBindingSource.CurrentChanged += new System.EventHandler(this.stockBindingSource_CurrentChanged);
             // 
             // label1
             // 
@@ -146,28 +161,31 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "수익률";
             // 
-            // textBox1
+            // txtBase
             // 
-            this.textBox1.Location = new System.Drawing.Point(687, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 25);
-            this.textBox1.TabIndex = 8;
+            this.txtBase.Location = new System.Drawing.Point(687, 27);
+            this.txtBase.Name = "txtBase";
+            this.txtBase.Size = new System.Drawing.Size(189, 25);
+            this.txtBase.TabIndex = 8;
+            this.txtBase.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // txtValue
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(687, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(189, 25);
-            this.textBox2.TabIndex = 9;
+            this.txtValue.Enabled = false;
+            this.txtValue.Location = new System.Drawing.Point(687, 65);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(189, 25);
+            this.txtValue.TabIndex = 9;
+            this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 
-            // textBox3
+            // txtEarning
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(687, 103);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(189, 25);
-            this.textBox3.TabIndex = 10;
+            this.txtEarning.Enabled = false;
+            this.txtEarning.Location = new System.Drawing.Point(687, 103);
+            this.txtEarning.Name = "txtEarning";
+            this.txtEarning.Size = new System.Drawing.Size(189, 25);
+            this.txtEarning.TabIndex = 10;
+            this.txtEarning.TextChanged += new System.EventHandler(this.txtEarning_TextChanged);
             // 
             // label4
             // 
@@ -210,14 +228,69 @@
             this.panel2.Size = new System.Drawing.Size(530, 30);
             this.panel2.TabIndex = 0;
             // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            // 
+            // stockIdDataGridViewTextBoxColumn
+            // 
+            this.stockIdDataGridViewTextBoxColumn.DataPropertyName = "StockId";
+            this.stockIdDataGridViewTextBoxColumn.HeaderText = "StockId";
+            this.stockIdDataGridViewTextBoxColumn.Name = "stockIdDataGridViewTextBoxColumn";
+            // 
+            // closeDataGridViewTextBoxColumn
+            // 
+            this.closeDataGridViewTextBoxColumn.DataPropertyName = "Close";
+            this.closeDataGridViewTextBoxColumn.HeaderText = "Close";
+            this.closeDataGridViewTextBoxColumn.Name = "closeDataGridViewTextBoxColumn";
+            // 
+            // pERDataGridViewTextBoxColumn
+            // 
+            this.pERDataGridViewTextBoxColumn.DataPropertyName = "PER";
+            this.pERDataGridViewTextBoxColumn.HeaderText = "PER";
+            this.pERDataGridViewTextBoxColumn.Name = "pERDataGridViewTextBoxColumn";
+            // 
+            // stockHoldingDataGridViewTextBoxColumn
+            // 
+            this.stockHoldingDataGridViewTextBoxColumn.DataPropertyName = "StockHolding";
+            this.stockHoldingDataGridViewTextBoxColumn.HeaderText = "StockHolding";
+            this.stockHoldingDataGridViewTextBoxColumn.Name = "stockHoldingDataGridViewTextBoxColumn";
+            // 
+            // marketCapDataGridViewTextBoxColumn
+            // 
+            this.marketCapDataGridViewTextBoxColumn.DataPropertyName = "MarketCap";
+            this.marketCapDataGridViewTextBoxColumn.HeaderText = "MarketCap";
+            this.marketCapDataGridViewTextBoxColumn.Name = "marketCapDataGridViewTextBoxColumn";
+            // 
+            // priceBindingSource
+            // 
+            this.priceBindingSource.DataMember = "Price";
+            this.priceBindingSource.DataSource = this.stockCalcDataSet;
+            // 
             // stockCalcDataSet
             // 
             this.stockCalcDataSet.DataSetName = "StockCalcDataSet";
             this.stockCalcDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // stockTableAdapter
+            // stockCalcDataSetBindingSource
             // 
-            this.stockTableAdapter.ClearBeforeFill = true;
+            this.stockCalcDataSetBindingSource.DataSource = this.stockCalcDataSet;
+            this.stockCalcDataSetBindingSource.Position = 0;
+            // 
+            // stockCalcDataSetBindingSource1
+            // 
+            this.stockCalcDataSetBindingSource1.DataSource = this.stockCalcDataSet;
+            this.stockCalcDataSetBindingSource1.Position = 0;
+            // 
+            // priceTableAdapter
+            // 
+            this.priceTableAdapter.ClearBeforeFill = true;
+            // 
+            // priceDataBindingSource
+            // 
+            this.priceDataBindingSource.DataSource = typeof(StockCalc.Data.Data.PriceData);
             // 
             // Form1
             // 
@@ -229,9 +302,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtEarning);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.txtBase);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -245,8 +318,11 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockCalcDataSetBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,18 +338,26 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtBase;
+        private System.Windows.Forms.TextBox txtValue;
+        private System.Windows.Forms.TextBox txtEarning;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-
-        private System.Windows.Forms.BindingSource stockBindingSource;
+        private System.Windows.Forms.BindingSource priceDataBindingSource;
+        private System.Windows.Forms.BindingSource stockCalcDataSetBindingSource;
         private StockCalcDataSet stockCalcDataSet;
-        private StockCalcDataSetTableAdapters.StockTableAdapter stockTableAdapter;
+        private System.Windows.Forms.BindingSource stockCalcDataSetBindingSource1;
+        private System.Windows.Forms.BindingSource priceBindingSource;
+        private StockCalcDataSetTableAdapters.PriceTableAdapter priceTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn closeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pERDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockHoldingDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marketCapDataGridViewTextBoxColumn;
     }
 }
 
