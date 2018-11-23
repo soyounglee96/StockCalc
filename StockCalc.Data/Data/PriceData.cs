@@ -96,56 +96,58 @@ namespace StockCalc.Data.Data
             return dayClose;
         }
 
+       
+
         // 골든크로스인지 확인
         public bool isGoldenCross(DateTime date, string id, int mva1, int mva2)
         {
             var context = CreateContext();
-            double shortMva;
-            double yesterdayShortMva;
-            double longMva;
-            
-          
-            try
-            {
-                double shortMvaCount = (from x in context.Prices
-                    where x.Date <= date && x.StockId.Equals(id)
-                    orderby x.Date descending
-                    select x.Close).Count();
 
-                if (shortMvaCount >= mva1)
+            double shortMvaCount = context.Prices.Where(x => x.Date <= date && x.StockId.Equals(id))
+                .OrderByDescending(x => x.Date)
+                .Select(x => x.Close).Count();
+            double yesterdayShortMvaCount = (from x in context.Prices
+                where x.Date < date && x.StockId.Equals(id)
+                orderby x.Date descending
+                select x.Close).Count();
+            double longMvaCount = (from x in context.Prices
+                where x.Date < date && x.StockId.Equals(id)
+                orderby x.Date descending
+                select x.Close).Count();
+
+
+           if (shortMvaCount >= mva1 && yesterdayShortMvaCount >= mva1 && longMvaCount >= mva2)
                 {                    
-                    shortMva = (from x in context.Prices
+                   double shortMva = (from x in context.Prices
                         where x.Date <= date && x.StockId.Equals(id)
                         orderby x.Date descending
                         select x.Close).Take(mva1).Average();
-                }
-
                 
 
+              
+                    double yesterdayShortMva = (from x in context.Prices
+                        where x.Date < date && x.StockId.Equals(id)
+                        orderby x.Date descending
+                        select x.Close).Take(mva1).Average();
+                
+
+                    double longMva = (from x in context.Prices
+                        where x.Date <= date && x.StockId.Equals(id)
+                        orderby x.Date descending
+                        select x.Close).Take(mva2).Average();
                
-                yesterdayShortMva = (from x in context.Prices
-                    where x.Date < date && x.StockId.Equals(id)
-                    orderby x.Date descending
-                    select x.Close).Take(mva1).Average();
 
-                longMva = (from x in context.Prices
-                    where x.Date <= date && x.StockId.Equals(id)
-                    orderby x.Date descending
-                    select x.Close).Take(mva2).Average();
             }
-            catch (Exception e)
+
+
+            /*if (shortMva >= longMva && shortMva > yesterdayShortMva)
             {
-                Console.WriteLine(e);
-                return false;
+                return true;
             }
-      
-            //if (shortMva >= longMva && shortMva > yesterdayShortMva)
-                {
-                    return true;
-                }
 
-                return false;   
-           
+            return false;*/
+
+
         }
 
     }
