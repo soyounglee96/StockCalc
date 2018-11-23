@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockCalc.Data;
+using StockCalc.Data.Data;
 
 namespace StockCalc.Gui.UserControl
 {
     public partial class ucGoldenCross : System.Windows.Forms.UserControl
     {
         public static ucGoldenCross _instance;
-
         public static ucGoldenCross Instance
         {
             get
@@ -31,9 +32,13 @@ namespace StockCalc.Gui.UserControl
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public List<Trade> ucGoldenCross_Data()
         {
-
+            int shortMva = int.Parse(cbShortMVA.Text);
+            int longMva = int.Parse(cbLongMAV.Text);
+            int stockCount = int.Parse(numericUpDown.Value.ToString());
+            var goldenCrossTradeList = DataRepository.Trade.CalculateGoldenCross(shortMva, longMva, stockCount);
+            return goldenCrossTradeList;
         }
     }
 }

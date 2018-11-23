@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure.MappingViews;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,47 +56,98 @@ namespace StockCalc.Data.Data
                 where x.Date.Equals(date)
                 select x;
             return query.ToList();
+
         }
 
-        public List<string> GetTop10(DateTime date)
+        // 날짜들의 목록
+        public List<DateTime> GetDate()
+        {
+            var context = CreateContext();
+
+            var query = (from x in context.Prices
+                select x.Date).Distinct();
+
+            return query.ToList();
+        }
+
+
+        // 날짜에 따른 시총순위 10개 가져오기
+        public List<string> GetTop(DateTime date, int stockCount)
         {
             var context = CreateContext();
             var query = (from x in context.Prices
                 where x.Date.Equals(date)
                 orderby x.MarketCap descending
-                select x.StockId).Take(10);
+                select x.StockId).Take(stockCount);
 
             return query.ToList();
         }
-
-        public List<Price> SelectById(string id)
+    
+       
+        // 날짜와 종목코드에 따른 종가
+        public double SelectByDateNId(DateTime date, string id)
         {
             
             var context = CreateContext();
-            var query = from x in context.Prices
-                where  x.StockId.Equals(id)
-                select x;
+            double dayClose = (from x in context.Prices
+                where  x.Date.Equals(date) && x.StockId.Equals(id)
+                select x.Close).First();
 
-            return query.ToList();
+            return dayClose;
         }
 
-        /*public bool GetMVA(DateTime date, int period, string id)
+        // 골든크로스인지 확인
+        public bool isGoldenCross(DateTime date, string id, int mva1, int mva2)
         {
             var context = CreateContext();
+            double shortMva;
+            double yesterdayShortMva;
+            double longMva;
+            
+          
+            try
+            {
+                double shortMvaCount = (from x in context.Prices
+                    where x.Date <= date && x.StockId.Equals(id)
+                    orderby x.Date descending
+                    select x.Close).Count();
 
-            // 이평선 구하기
-            /*double mva = (from x in context.Prices
-                where x.Date < date && x.StockId.Equals(id)
-                orderby x.Date descending
-                select x.Close).Take(period).Average();
+                if (shortMvaCount >= mva1)
+                {                    
+                    shortMva = (from x in context.Prices
+                        where x.Date <= date && x.StockId.Equals(id)
+                        orderby x.Date descending
+                        select x.Close).Take(mva1).Average();
+                }
 
-            double dayClose = (from x in context.Prices
-                where x.Date.Equals(date) && x.StockId.Equals(id)
-                select x.Close).Sum();
+                
 
-            if(dayClose >= mva && )
-           // return mva;
+               
+                yesterdayShortMva = (from x in context.Prices
+                    where x.Date < date && x.StockId.Equals(id)
+                    orderby x.Date descending
+                    select x.Close).Take(mva1).Average();
+
+                longMva = (from x in context.Prices
+                    where x.Date <= date && x.StockId.Equals(id)
+                    orderby x.Date descending
+                    select x.Close).Take(mva2).Average();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+      
+            //if (shortMva >= longMva && shortMva > yesterdayShortMva)
+                {
+                    return true;
+                }
+
+                return false;   
+           
         }
-        */
+
     }
 }
+

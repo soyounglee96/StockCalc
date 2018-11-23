@@ -73,16 +73,16 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(61, 409);
+            this.panel2.Location = new System.Drawing.Point(35, 469);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(539, 30);
             this.panel2.TabIndex = 17;
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(70, 48);
+            this.panel1.Location = new System.Drawing.Point(12, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(530, 49);
+            this.panel1.Size = new System.Drawing.Size(600, 40);
             this.panel1.TabIndex = 30;
             // 
             // label4
@@ -164,9 +164,10 @@
             // 
             // btnPer
             // 
-            this.btnPer.Location = new System.Drawing.Point(318, 19);
+            this.btnPer.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPer.Location = new System.Drawing.Point(306, 12);
             this.btnPer.Name = "btnPer";
-            this.btnPer.Size = new System.Drawing.Size(109, 23);
+            this.btnPer.Size = new System.Drawing.Size(130, 30);
             this.btnPer.TabIndex = 20;
             this.btnPer.Text = "PER";
             this.btnPer.UseVisualStyleBackColor = true;
@@ -174,9 +175,10 @@
             // 
             // btnStockHolding
             // 
-            this.btnStockHolding.Location = new System.Drawing.Point(194, 19);
+            this.btnStockHolding.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStockHolding.Location = new System.Drawing.Point(158, 12);
             this.btnStockHolding.Name = "btnStockHolding";
-            this.btnStockHolding.Size = new System.Drawing.Size(109, 23);
+            this.btnStockHolding.Size = new System.Drawing.Size(130, 30);
             this.btnStockHolding.TabIndex = 19;
             this.btnStockHolding.Text = "StockHolding";
             this.btnStockHolding.UseVisualStyleBackColor = true;
@@ -184,9 +186,10 @@
             // 
             // btnGoldenCross
             // 
-            this.btnGoldenCross.Location = new System.Drawing.Point(70, 19);
+            this.btnGoldenCross.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoldenCross.Location = new System.Drawing.Point(12, 13);
             this.btnGoldenCross.Name = "btnGoldenCross";
-            this.btnGoldenCross.Size = new System.Drawing.Size(109, 23);
+            this.btnGoldenCross.Size = new System.Drawing.Size(130, 30);
             this.btnGoldenCross.TabIndex = 18;
             this.btnGoldenCross.Text = "GoldenCross";
             this.btnGoldenCross.UseVisualStyleBackColor = true;
@@ -198,13 +201,13 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(61, 103);
+            this.chart1.Location = new System.Drawing.Point(12, 95);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(539, 300);
+            this.chart1.Size = new System.Drawing.Size(600, 368);
             this.chart1.TabIndex = 33;
             this.chart1.Text = "chart1";
             // 
@@ -212,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 450);
+            this.ClientSize = new System.Drawing.Size(1013, 497);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btncollection);
@@ -231,7 +234,7 @@
             this.Controls.Add(this.btnStockHolding);
             this.Controls.Add(this.btnGoldenCross);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Stock Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
