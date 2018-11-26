@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="StockCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="StockCalculator.Designer.cs">
+      <DependentUpon>StockCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,23 +71,11 @@
     <Compile Include="UserControl\ucGoldenCross.Designer.cs">
       <DependentUpon>ucGoldenCross.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ucGoldenCrossDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ucGoldenCrossDis.Designer.cs">
-      <DependentUpon>ucGoldenCrossDis.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\ucPer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\ucPer.Designer.cs">
       <DependentUpon>ucPer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\ucPerDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ucPerDis.Designer.cs">
-      <DependentUpon>ucPerDis.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl\ucStockHolding.cs">
       <SubType>UserControl</SubType>
@@ -95,14 +83,8 @@
     <Compile Include="UserControl\ucStockHolding.Designer.cs">
       <DependentUpon>ucStockHolding.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ucStockHoldingDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ucStockHoldingDis.Designer.cs">
-      <DependentUpon>ucStockHoldingDis.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="StockCalculator.resx">
+      <DependentUpon>StockCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -116,20 +98,11 @@
     <EmbeddedResource Include="UserControl\ucGoldenCross.resx">
       <DependentUpon>ucGoldenCross.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\ucGoldenCrossDis.resx">
-      <DependentUpon>ucGoldenCrossDis.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\ucPer.resx">
       <DependentUpon>ucPer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\ucPerDis.resx">
-      <DependentUpon>ucPerDis.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\ucStockHolding.resx">
       <DependentUpon>ucStockHolding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\ucStockHoldingDis.resx">
-      <DependentUpon>ucStockHoldingDis.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

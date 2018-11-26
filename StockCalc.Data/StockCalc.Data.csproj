@@ -55,7 +55,6 @@
     <Compile Include="Data\PriceData.cs" />
     <Compile Include="Data\ResultData.cs" />
     <Compile Include="Data\StockData.cs" />
-    <Compile Include="Data\StrategyData.cs" />
     <Compile Include="Data\TradeData.cs" />
     <Compile Include="Price.cs">
       <DependentUpon>StockCalc.tt</DependentUpon>

@@ -33,12 +33,12 @@ namespace StockCalc.Gui.UserControl
             InitializeComponent();
         }
 
-        public List<Trade> ucGoldenCross_Data()
+        public List<Trade> ucGoldenCross_Data(double baseMoney)
         {
             int shortMva = int.Parse(cbShortMVA.Text);
             int longMva = int.Parse(cbLongMAV.Text);
             int stockCount = int.Parse(numericUpDown.Value.ToString());
-            var goldenCrossTradeList = DataRepository.Trade.CalculateGoldenCross(shortMva, longMva, stockCount);
+            var goldenCrossTradeList = DataRepository.Trade.CalculateGoldenCross(baseMoney, shortMva, longMva, stockCount);
             return goldenCrossTradeList;
 
         }

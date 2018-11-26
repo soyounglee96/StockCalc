@@ -47,19 +47,6 @@ namespace StockCalc.Data.Data
             }
         }
 
-        private static StrategyData _strategy;
-
-        public static StrategyData Strategy
-        {
-            get
-            {
-                if (_strategy == null)
-                    _strategy = new StrategyData();
-
-                return _strategy;
-            }
-        }
-
         private static TradeData _trade;
 
         public static TradeData Trade

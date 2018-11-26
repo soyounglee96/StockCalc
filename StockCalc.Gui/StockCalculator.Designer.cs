@@ -1,6 +1,6 @@
 ﻿namespace StockCalc.Gui
 {
-    partial class Form1
+    partial class StockCalculator
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -33,14 +33,13 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btncollection = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCurrentER = new System.Windows.Forms.TextBox();
+            this.txtCurrentValue = new System.Windows.Forms.TextBox();
+            this.txtBaseMoney = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,13 +71,6 @@
             this.btncollection.Text = "수집";
             this.btncollection.UseVisualStyleBackColor = true;
             this.btncollection.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(12, 492);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(600, 30);
-            this.panel2.TabIndex = 17;
             // 
             // panel1
             // 
@@ -114,28 +106,31 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "원";
             // 
-            // textBox3
+            // txtCurrentER
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(727, 95);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(189, 25);
-            this.textBox3.TabIndex = 26;
+            this.txtCurrentER.Enabled = false;
+            this.txtCurrentER.Location = new System.Drawing.Point(727, 95);
+            this.txtCurrentER.Name = "txtCurrentER";
+            this.txtCurrentER.ReadOnly = true;
+            this.txtCurrentER.Size = new System.Drawing.Size(189, 25);
+            this.txtCurrentER.TabIndex = 26;
             // 
-            // textBox2
+            // txtCurrentValue
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(727, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(189, 25);
-            this.textBox2.TabIndex = 25;
+            this.txtCurrentValue.Enabled = false;
+            this.txtCurrentValue.Location = new System.Drawing.Point(727, 57);
+            this.txtCurrentValue.Name = "txtCurrentValue";
+            this.txtCurrentValue.ReadOnly = true;
+            this.txtCurrentValue.Size = new System.Drawing.Size(189, 25);
+            this.txtCurrentValue.TabIndex = 25;
             // 
-            // textBox1
+            // txtBaseMoney
             // 
-            this.textBox1.Location = new System.Drawing.Point(727, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 25);
-            this.textBox1.TabIndex = 24;
+            this.txtBaseMoney.Location = new System.Drawing.Point(727, 19);
+            this.txtBaseMoney.Name = "txtBaseMoney";
+            this.txtBaseMoney.Size = new System.Drawing.Size(189, 25);
+            this.txtBaseMoney.TabIndex = 24;
+            this.txtBaseMoney.Text = "1000000";
             // 
             // label3
             // 
@@ -230,34 +225,33 @@
             this.lbDis.Name = "lbDis";
             this.lbDis.Size = new System.Drawing.Size(0, 15);
             this.lbDis.TabIndex = 35;
-            this.lbDis.Click += new System.EventHandler(this.label7_Click);
             // 
-            // Form1
+            // StockCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 563);
+            this.ClientSize = new System.Drawing.Size(1013, 507);
             this.Controls.Add(this.lbDis);
             this.Controls.Add(this.btnCalc);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btncollection);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCurrentER);
+            this.Controls.Add(this.txtCurrentValue);
+            this.Controls.Add(this.txtBaseMoney);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPer);
             this.Controls.Add(this.btnStockHolding);
             this.Controls.Add(this.btnGoldenCross);
-            this.Name = "Form1";
+            this.Name = "StockCalculator";
             this.Text = "Stock Calculator";
+            this.Load += new System.EventHandler(this.StockCalculator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
@@ -269,14 +263,13 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btncollection;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCurrentER;
+        private System.Windows.Forms.TextBox txtCurrentValue;
+        private System.Windows.Forms.TextBox txtBaseMoney;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

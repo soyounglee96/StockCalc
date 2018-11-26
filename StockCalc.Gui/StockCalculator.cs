@@ -13,11 +13,17 @@ using StockData = StockCalc.Data.Data.StockData;
 
 namespace StockCalc.Gui
 {
-    public partial class Form1 : Form
+    public partial class StockCalculator : Form
     {
-        public Form1()
+        public static double baseMoney;
+        public StockCalculator()
         {
             InitializeComponent();
+        }
+
+        private void StockCalculator_Load(object sender, EventArgs e)
+        {
+           baseMoney = Convert.ToDouble(txtBaseMoney.ToString());
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -29,19 +35,13 @@ namespace StockCalc.Gui
             if (!panel1.Controls.Contains(ucGoldenCross.Instance))
             {
                 panel1.Controls.Add(ucGoldenCross.Instance);
-//                panel2.Controls.Add(ucGoldenCrossDis.Instance);
-  //              ucGoldenCrossDis.Instance.Dock = DockStyle.Fill;
-    //            ucGoldenCrossDis.Instance.BringToFront();
                 ucGoldenCross.Instance.Dock = DockStyle.Fill;
                 ucGoldenCross.Instance.BringToFront();
             }
-
             else
             {
                 ucGoldenCross.Instance.BringToFront();
-      //          ucGoldenCrossDis.Instance.BringToFront();
             }
-
             lbDis.Text = @"시가총액 순위대로 10개의 종목을 GoldenCross가 발생했을 때 1주씩 매입";
 
 
@@ -52,9 +52,6 @@ namespace StockCalc.Gui
             if (!panel1.Controls.Contains(ucStockHolding.Instance))
             {
                 panel1.Controls.Add(ucStockHolding.Instance);
-                panel2.Controls.Add(ucStockHoldingDis.Instance);
-                ucStockHoldingDis.Instance.Dock = DockStyle.Fill;
-                ucStockHoldingDis.Instance.BringToFront();
                 ucStockHolding.Instance.Dock = DockStyle.Fill;
                 ucStockHolding.Instance.BringToFront();
             }
@@ -62,8 +59,8 @@ namespace StockCalc.Gui
             else
             {
                 ucStockHolding.Instance.BringToFront();
-                ucStockHoldingDis.Instance.BringToFront();
             }
+            lbDis.Text = @"외국인의 보유량이 5% 이상인 종목 중 상위 10개를 1주씩 매입";
 
         }
 
@@ -72,21 +69,15 @@ namespace StockCalc.Gui
             if (!panel1.Controls.Contains(ucPer.Instance))
             {
                 panel1.Controls.Add(ucPer.Instance);
-                panel2.Controls.Add(ucPerDis.Instance);
                 ucPer.Instance.Dock = DockStyle.Fill;
                 ucPer.Instance.BringToFront();
-                ucPerDis.Instance.Dock = DockStyle.Fill;
-                ucPerDis.Instance.BringToFront();
             }
 
             else
             {
                 ucPer.Instance.BringToFront();
-                ucPerDis.Instance.BringToFront();
             }
-            ucPer ucper = new ucPer();
-            ucper.ucPer_Data_Price();
-            dataGridView1.DataSource = ucper.ucPer_Data();
+            lbDis.Text = @"PER의 범위가 2 - 10 % 인 종목 중 하위 10개를 1주씩 매입";
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
@@ -94,15 +85,23 @@ namespace StockCalc.Gui
             if (panel1.Controls.Contains(ucGoldenCross.Instance))
             {
                 ucGoldenCross ucgoldenCross = new ucGoldenCross();
-                dataGridView1.DataSource = ucgoldenCross.ucGoldenCross_Data();
+                dataGridView1.DataSource = ucgoldenCross.ucGoldenCross_Data(baseMoney);
 
+            }
+            else if(panel1.Controls.Contains(ucStockHolding.Instance))
+            {
+                
+
+            }
+            else
+            {
+                ucPer ucper = new ucPer();
+                ucper.ucPer_Data_Price();
+                dataGridView1.DataSource = ucper.ucPer_Data();
             }
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
