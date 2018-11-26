@@ -99,55 +99,38 @@ namespace StockCalc.Data.Data
        
 
         // 골든크로스인지 확인
-        public bool isGoldenCross(DateTime date, string id, int mva1, int mva2)
+        public bool IsGoldenCross(DateTime date, string id, int mva1, int mva2)
         {
             var context = CreateContext();
 
-            double shortMvaCount = context.Prices.Where(x => x.Date <= date && x.StockId.Equals(id))
-                .OrderByDescending(x => x.Date)
+            var shortMvaCount = context.Prices.Where(x => x.Date <= date && x.StockId.Equals(id))
+                .OrderByDescending(x => x.Date) 
                 .Select(x => x.Close).Count();
-            double yesterdayShortMvaCount = (from x in context.Prices
+            var yesterdayShortMvaCount = (context.Prices.Where(x => x.Date < date && x.StockId.Equals(id))
+                .OrderByDescending(x => x.Date)
+                .Select(x => x.Close)).Count();
+            var longMvaCount = (context.Prices.Where(x => x.Date <= date && x.StockId.Equals(id))
+                .OrderByDescending(x => x.Date)
+                .Select(x => x.Close)).Count();
+
+
+            if (shortMvaCount < mva1 || yesterdayShortMvaCount < mva1 || longMvaCount < mva2) return false;
+            var shortMva = (from x in context.Prices
+                where x.Date <= date && x.StockId.Equals(id)
+                orderby x.Date descending
+                select x.Close).Take(mva1).Average();
+
+            var yesterdayShortMva = (from x in context.Prices
                 where x.Date < date && x.StockId.Equals(id)
                 orderby x.Date descending
-                select x.Close).Count();
-            double longMvaCount = (from x in context.Prices
-                where x.Date < date && x.StockId.Equals(id)
+                select x.Close).Take(mva1).Average();
+
+            var longMva = (from x in context.Prices
+                where x.Date <= date && x.StockId.Equals(id)
                 orderby x.Date descending
-                select x.Close).Count();
+                select x.Close).Take(mva2).Average();
 
-
-           if (shortMvaCount >= mva1 && yesterdayShortMvaCount >= mva1 && longMvaCount >= mva2)
-                {                    
-                   double shortMva = (from x in context.Prices
-                        where x.Date <= date && x.StockId.Equals(id)
-                        orderby x.Date descending
-                        select x.Close).Take(mva1).Average();
-                
-
-              
-                    double yesterdayShortMva = (from x in context.Prices
-                        where x.Date < date && x.StockId.Equals(id)
-                        orderby x.Date descending
-                        select x.Close).Take(mva1).Average();
-                
-
-                    double longMva = (from x in context.Prices
-                        where x.Date <= date && x.StockId.Equals(id)
-                        orderby x.Date descending
-                        select x.Close).Take(mva2).Average();
-               
-
-            }
-
-
-            /*if (shortMva >= longMva && shortMva > yesterdayShortMva)
-            {
-                return true;
-            }
-
-            return false;*/
-
-
+            return shortMva >= longMva && longMva >= yesterdayShortMva;
         }
 
     }

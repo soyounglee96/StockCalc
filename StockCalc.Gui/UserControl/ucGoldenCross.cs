@@ -14,6 +14,7 @@ namespace StockCalc.Gui.UserControl
 {
     public partial class ucGoldenCross : System.Windows.Forms.UserControl
     {
+        //private string itemSelected;
         public static ucGoldenCross _instance;
         public static ucGoldenCross Instance
         {
@@ -39,6 +40,19 @@ namespace StockCalc.Gui.UserControl
             int stockCount = int.Parse(numericUpDown.Value.ToString());
             var goldenCrossTradeList = DataRepository.Trade.CalculateGoldenCross(shortMva, longMva, stockCount);
             return goldenCrossTradeList;
+
         }
+
+        /*private void cbShortMVA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            itemSelected = cbShortMVA.SelectedItem as string;
+            
+        }
+
+        private void cbLongMVA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           itemSelected = cbLongMAV.SelectedItem as string;
+          
+        }*/
     }
 }
