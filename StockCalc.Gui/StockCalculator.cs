@@ -23,7 +23,7 @@ namespace StockCalc.Gui
 
         private void StockCalculator_Load(object sender, EventArgs e)
         {
-           baseMoney = Convert.ToDouble(txtBaseMoney.ToString());
+           baseMoney = double.Parse(txtBaseMoney.Text);
         }
         private void button1_Click_1(object sender, EventArgs e)
         {

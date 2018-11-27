@@ -14,10 +14,10 @@ namespace StockCalc.Data.Data
             foreach (var day in date)
             {
                 List<string> marketTops = DataRepository.Price.GetTop(day, stockCount);
-                foreach (var marketTop in marketTops)
+                for(int i=0; i < marketTops.Count; i++)
                 {
                     // 골든크로스인지 확인
-                    if (!DataRepository.Price.IsGoldenCross(day, marketTop, shortMva, longMva)) continue;
+                    if (!DataRepository.Price.IsGoldenCross(day, marketTops[i], shortMva, longMva)) continue;
 
                     // 자본금이 있는지 확인
                     if(baseMoney > 0)
@@ -25,15 +25,15 @@ namespace StockCalc.Data.Data
                         Trade t = new Trade
                         {
                             StrategyId = 1,
-                            StockId = marketTop,
+                            StockId = marketTops[i],
                             BuyDate = day,
-                            BuyPrice = DataRepository.Price.SelectByDateNId(day, marketTop),
+                            BuyPrice = DataRepository.Price.SelectByDateNId(day, marketTops[i]),
                             SellDate = null,
                             SellPrice = null,
                             TradeER = 0.0
                         };
                         DataRepository.Trade.Insert(t);
-                        baseMoney -= DataRepository.Price.SelectByDateNId(day, marketTop);
+                        baseMoney -= DataRepository.Price.SelectByDateNId(day, marketTops[i]);
                     }
                     break;                    
                 }
