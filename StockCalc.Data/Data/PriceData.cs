@@ -59,7 +59,7 @@ namespace StockCalc.Data.Data
 
         }
 
-        // 날짜들의 목록
+        // Price table 날짜들의 목록
         public List<DateTime> GetDate()
         {
             var context = CreateContext();
@@ -96,7 +96,7 @@ namespace StockCalc.Data.Data
             return dayClose;
         }
 
-       
+
 
         // 골든크로스인지 확인
         public bool IsGoldenCross(DateTime date, string id, int mva1, int mva2)
@@ -115,6 +115,7 @@ namespace StockCalc.Data.Data
 
 
             if (shortMvaCount < mva1 || yesterdayShortMvaCount < mva1 || longMvaCount < mva2) return false;
+
             var shortMva = (from x in context.Prices
                 where x.Date <= date && x.StockId.Equals(id)
                 orderby x.Date descending

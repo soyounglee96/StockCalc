@@ -38,6 +38,7 @@ namespace StockCalc.Data.Data
             context.SaveChanges();
         }
 
+
         public void Delete(T entity)
         {
             var context = CreateContext();

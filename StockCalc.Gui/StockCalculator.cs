@@ -86,6 +86,8 @@ namespace StockCalc.Gui
             {
                 ucGoldenCross ucgoldenCross = new ucGoldenCross();
                 dataGridView1.DataSource = ucgoldenCross.ucGoldenCross_Data(baseMoney);
+               // DataRepository.Result.GetCurrent(baseMoney);
+
 
             }
             else if(panel1.Controls.Contains(ucStockHolding.Instance))
