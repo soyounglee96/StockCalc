@@ -28,57 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.cbShortMVA = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbLongMAV = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // numericUpDown
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "GoldeCross";
+            this.numericUpDown.Location = new System.Drawing.Point(465, 5);
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(88, 25);
+            this.numericUpDown.TabIndex = 7;
+            this.numericUpDown.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // cbShortMVA
+            // 
+            this.cbShortMVA.FormattingEnabled = true;
+            this.cbShortMVA.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "60"});
+            this.cbShortMVA.Location = new System.Drawing.Point(4, 7);
+            this.cbShortMVA.Name = "cbShortMVA";
+            this.cbShortMVA.Size = new System.Drawing.Size(46, 23);
+            this.cbShortMVA.TabIndex = 6;
+            this.cbShortMVA.Text = "20";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 18);
+            this.label2.Location = new System.Drawing.Point(392, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 5;
             this.label2.Text = "종목개수";
             // 
-            // comboBox1
+            // label3
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(120, 15);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 2;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(52, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "일 이평선이 ";
             // 
-            // numericUpDown1
+            // cbLongMAV
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(375, 13);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 25);
-            this.numericUpDown1.TabIndex = 3;
+            this.cbLongMAV.FormattingEnabled = true;
+            this.cbLongMAV.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "60"});
+            this.cbLongMAV.Location = new System.Drawing.Point(142, 7);
+            this.cbLongMAV.Name = "cbLongMAV";
+            this.cbLongMAV.Size = new System.Drawing.Size(46, 23);
+            this.cbLongMAV.TabIndex = 9;
+            this.cbLongMAV.Text = "60";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(190, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(193, 15);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "일 이평선으로 GoldenCross";
             // 
             // ucGoldenCross
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbLongMAV);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.numericUpDown);
+            this.Controls.Add(this.cbShortMVA);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "ucGoldenCross";
-            this.Size = new System.Drawing.Size(530, 50);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.Size = new System.Drawing.Size(600, 40);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,9 +124,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
+        private System.Windows.Forms.ComboBox cbShortMVA;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbLongMAV;
+        private System.Windows.Forms.Label label4;
     }
 }

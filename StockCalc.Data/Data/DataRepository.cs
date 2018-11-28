@@ -8,12 +8,56 @@ namespace StockCalc.Data.Data
 {
     public class DataRepository
     {
-        public static PriceData Price { get; set; } = new PriceData();
-        public static ResultData Result { get; set; } = new ResultData();
-        public static StockData Stock { get; set; } = new StockData();
-        public static StrategyData Strategy { get;} = new StrategyData();
-        public static TradeData Trade { get; } = new TradeData();
+        private static PriceData _price;
 
+        public static PriceData Price
+        {
+            get
+            {
+                if (_price == null)
+                    _price = new PriceData();
 
+                return _price;
+            }
+        }
+
+        private static ResultData _result;
+
+        public static ResultData Result
+        {
+            get
+            {
+                if (_result == null)
+                    _result = new ResultData();
+
+                return _result;
+            }
+        }
+
+        private static StockData _stock;
+
+        public static StockData Stock
+        {
+            get
+            {
+                if (_stock == null)
+                    _stock = new StockData();
+
+                return _stock;
+            }
+        }
+
+        private static TradeData _trade;
+
+        public static TradeData Trade
+        {
+            get
+            {
+                if (_trade == null)
+                    _trade = new TradeData();
+
+                return _trade;
+            }
+        }
     }
 }

@@ -39,10 +39,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.10.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.10\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,30 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="StockCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="StockCalculator.Designer.cs">
+      <DependentUpon>StockCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StockCalcDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StockCalcDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\ucGoldenCross.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\ucGoldenCross.Designer.cs">
       <DependentUpon>ucGoldenCross.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\ucGoldenCrossDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ucGoldenCrossDis.Designer.cs">
-      <DependentUpon>ucGoldenCrossDis.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl\ucPer.cs">
       <SubType>UserControl</SubType>
@@ -86,27 +77,14 @@
     <Compile Include="UserControl\ucPer.Designer.cs">
       <DependentUpon>ucPer.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ucPerDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ucPerDis.Designer.cs">
-      <DependentUpon>ucPerDis.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\ucStockHolding.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\ucStockHolding.Designer.cs">
       <DependentUpon>ucStockHolding.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\UcStockHoldingDis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\UcStockHoldingDis.Designer.cs">
-      <DependentUpon>UcStockHoldingDis.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="StockCalculator.resx">
+      <DependentUpon>StockCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,22 +98,14 @@
     <EmbeddedResource Include="UserControl\ucGoldenCross.resx">
       <DependentUpon>ucGoldenCross.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\ucGoldenCrossDis.resx">
-      <DependentUpon>ucGoldenCrossDis.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\ucPer.resx">
       <DependentUpon>ucPer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\ucPerDis.resx">
-      <DependentUpon>ucPerDis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\ucStockHolding.resx">
       <DependentUpon>ucStockHolding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\UcStockHoldingDis.resx">
-      <DependentUpon>UcStockHoldingDis.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\StockCalc.Data.Trade.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,26 +115,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="StockCalcDataSet.xsc">
-      <DependentUpon>StockCalcDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="StockCalcDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>StockCalcDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="StockCalcDataSet.xss">
-      <DependentUpon>StockCalcDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\StockCalc.Crawler\StockCalc.Crawler.csproj">
+      <Project>{c240e506-d57b-4987-bb1e-f0ffb154c94b}</Project>
+      <Name>StockCalc.Crawler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockCalc.Data\StockCalc.Data.csproj">
-      <Project>{68e42649-da19-4cdf-bad9-520644694e9b}</Project>
+      <Project>{47674f6c-c48a-44e1-8e15-dbef7cf7ae66}</Project>
       <Name>StockCalc.Data</Name>
     </ProjectReference>
   </ItemGroup>

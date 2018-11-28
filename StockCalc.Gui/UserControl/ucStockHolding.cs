@@ -22,13 +22,15 @@ namespace StockCalc.Gui.UserControl
                 {
                     _instance = new ucStockHolding();
                 }
+
                 return _instance;
             }
         }
-        
         public ucStockHolding()
         {
             InitializeComponent();
         }
+
+        
     }
 }

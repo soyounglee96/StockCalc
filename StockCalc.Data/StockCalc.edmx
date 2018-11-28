@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StockCalcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="StockId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Close" Type="float" Nullable="false" />
+          <Property Name="PER" Type="float" />
+          <Property Name="StockHolding" Type="float" Nullable="false" />
+          <Property Name="MarketCap" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+            <PropertyRef Name="TDate" />
+          </Key>
+          <Property Name="StrategyId" Type="int" Nullable="false" />
+          <Property Name="TDate" Type="date" Nullable="false" />
+          <Property Name="BaseMoney" Type="float" Nullable="false" />
+          <Property Name="CurrentValue" Type="float" Nullable="false" />
+          <Property Name="CurrentER" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Strategy">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+          </Key>
+          <Property Name="StrategyId" Type="int" Nullable="false" />
+          <Property Name="StrategyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+            <PropertyRef Name="StockId" />
+            <PropertyRef Name="BuyDate" />
+          </Key>
+          <Property Name="StrategyId" Type="int" Nullable="false" />
+          <Property Name="StockId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BuyDate" Type="date" Nullable="false" />
+          <Property Name="BuyPrice" Type="float" Nullable="false" />
+          <Property Name="SellDate" Type="date" />
+          <Property Name="SellPrice" Type="float" />
+          <Property Name="TradeER" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Price_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Strategy">
+          <End Role="Strategy" Type="Self.Strategy" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strategy">
+              <PropertyRef Name="StrategyId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="StrategyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Strategy">
+          <End Role="Strategy" Type="Self.Strategy" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strategy">
+              <PropertyRef Name="StrategyId" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="StrategyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockCalcModelStoreContainer">
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strategy" EntityType="Self.Strategy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trade" EntityType="Self.Trade" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Price_Stock" Association="Self.FK_Price_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Strategy" Association="Self.FK_Result_Strategy">
+            <End Role="Strategy" EntitySet="Strategy" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Stock" Association="Self.FK_Trade_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Trade" EntitySet="Trade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Strategy" Association="Self.FK_Trade_Strategy">
+            <End Role="Strategy" EntitySet="Strategy" />
+            <End Role="Trade" EntitySet="Trade" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockCalcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Close" Type="Double" Nullable="false" />
+          <Property Name="PER" Type="Double" />
+          <Property Name="StockHolding" Type="Double" Nullable="false" />
+          <Property Name="MarketCap" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Price_Stock" FromRole="Price" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+            <PropertyRef Name="TDate" />
+          </Key>
+          <Property Name="StrategyId" Type="Int32" Nullable="false" />
+          <Property Name="TDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BaseMoney" Type="Double" Nullable="false" />
+          <Property Name="CurrentValue" Type="Double" Nullable="false" />
+          <Property Name="CurrentER" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Strategy" Relationship="Self.FK_Result_Strategy" FromRole="Result" ToRole="Strategy" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StockName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Prices" Relationship="Self.FK_Price_Stock" FromRole="Stock" ToRole="Price" />
+          <NavigationProperty Name="Trades" Relationship="Self.FK_Trade_Stock" FromRole="Stock" ToRole="Trade" />
+        </EntityType>
+        <EntityType Name="Strategy">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+          </Key>
+          <Property Name="StrategyId" Type="Int32" Nullable="false" />
+          <Property Name="StrategyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Results" Relationship="Self.FK_Result_Strategy" FromRole="Strategy" ToRole="Result" />
+          <NavigationProperty Name="Trades" Relationship="Self.FK_Trade_Strategy" FromRole="Strategy" ToRole="Trade" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="StrategyId" />
+            <PropertyRef Name="StockId" />
+            <PropertyRef Name="BuyDate" />
+          </Key>
+          <Property Name="StrategyId" Type="Int32" Nullable="false" />
+          <Property Name="StockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BuyPrice" Type="Double" Nullable="false" />
+          <Property Name="SellDate" Type="DateTime" Precision="0" />
+          <Property Name="SellPrice" Type="Double" />
+          <Property Name="TradeER" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Trade_Stock" FromRole="Trade" ToRole="Stock" />
+          <NavigationProperty Name="Strategy" Relationship="Self.FK_Trade_Strategy" FromRole="Trade" ToRole="Strategy" />
+        </EntityType>
+        <Association Name="FK_Price_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Strategy">
+          <End Role="Strategy" Type="Self.Strategy" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strategy">
+              <PropertyRef Name="StrategyId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="StrategyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Strategy">
+          <End Role="Strategy" Type="Self.Strategy" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strategy">
+              <PropertyRef Name="StrategyId" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="StrategyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockCalcEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Strategies" EntityType="Self.Strategy" />
+          <EntitySet Name="Trades" EntityType="Self.Trade" />
+          <AssociationSet Name="FK_Price_Stock" Association="Self.FK_Price_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Strategy" Association="Self.FK_Result_Strategy">
+            <End Role="Strategy" EntitySet="Strategies" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Stock" Association="Self.FK_Trade_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Trade" EntitySet="Trades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Strategy" Association="Self.FK_Trade_Strategy">
+            <End Role="Strategy" EntitySet="Strategies" />
+            <End Role="Trade" EntitySet="Trades" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockCalcModelStoreContainer" CdmEntityContainer="StockCalcEntities">
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="StockCalcModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="PER" ColumnName="PER" />
+                <ScalarProperty Name="StockHolding" ColumnName="StockHolding" />
+                <ScalarProperty Name="MarketCap" ColumnName="MarketCap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="StockCalcModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="StrategyId" ColumnName="StrategyId" />
+                <ScalarProperty Name="TDate" ColumnName="TDate" />
+                <ScalarProperty Name="BaseMoney" ColumnName="BaseMoney" />
+                <ScalarProperty Name="CurrentValue" ColumnName="CurrentValue" />
+                <ScalarProperty Name="CurrentER" ColumnName="CurrentER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="StockCalcModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strategies">
+            <EntityTypeMapping TypeName="StockCalcModel.Strategy">
+              <MappingFragment StoreEntitySet="Strategy">
+                <ScalarProperty Name="StrategyId" ColumnName="StrategyId" />
+                <ScalarProperty Name="StrategyName" ColumnName="StrategyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trades">
+            <EntityTypeMapping TypeName="StockCalcModel.Trade">
+              <MappingFragment StoreEntitySet="Trade">
+                <ScalarProperty Name="StrategyId" ColumnName="StrategyId" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="SellDate" ColumnName="SellDate" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="TradeER" ColumnName="TradeER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
