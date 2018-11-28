@@ -13,15 +13,17 @@ namespace StockCalc.Data.Data
 {
     public class PriceData : EntityData<Price>
     {
-        public List<Price> PerRange(float lowPer, float highPer)
+        public List<Price> PerRange(DateTime date , float lowPer, float highPer, int count)
         {
             var context = CreateContext();
-            var query = from x in context.Prices
-                where x.PER >= lowPer && x.PER <= highPer
-                      orderby x.Date 
-                select x;
+            var query = (from x in context.Prices
+                                 where x.PER >= lowPer && x.PER <= highPer && x.Date==date
+                                   orderby x.PER descending
+                                 select x).Take(count);
             return query.ToList();
         }
+
+     
         public List<Price> PerBest(List<Price> list)
         {
             var context = CreateContext();
@@ -49,15 +51,6 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
-        public List<Price> DateCheckOnly(DateTime date)
-        {
-            var context = CreateContext();
-            var query = from x in context.Prices
-                where x.Date.Equals(date)
-                select x;
-            return query.ToList();
-
-        }
 
         // 날짜들의 목록
         public List<DateTime> GetDate()
@@ -66,7 +59,7 @@ namespace StockCalc.Data.Data
 
             var query = (from x in context.Prices
                 select x.Date).Distinct();
-
+            
             return query.ToList();
         }
 

@@ -14,6 +14,8 @@ namespace StockCalc.Gui.UserControl
 {
     public partial class ucPer : System.Windows.Forms.UserControl
     {
+        List<Price> perPriceList;
+
         public static ucPer _instance;
 
         public static ucPer Instance
@@ -35,41 +37,56 @@ namespace StockCalc.Gui.UserControl
         }
 
       
-        public List<Price> ucPer_Data()
-        {
-            PriceData priceData = new PriceData();
-            var per_low_num = float.Parse(numericUpDown2.Value.ToString());
-            var per_high_num = float.Parse(numericUpDown3.Value.ToString());
-            var perPriceList = priceData.PerRange(per_low_num, per_high_num);
-            return perPriceList;
-        }
+        //public List<Price> ucPer_Data()
+        //{
+        //    //PriceData priceData = new PriceData();
+        //    //var per_low_num = float.Parse(numericUpDown2.Value.ToString());
+        //    //var per_high_num = float.Parse(numericUpDown3.Value.ToString());
+        //    //var perPriceList = priceData.PerRange(per_low_num, per_high_num);
+        //    //return perPriceList;
+        //}
 
-        public void ucPer_Data_Price()
+        public List<Price> ucPer_Data_Price()
         {
             PriceData priceData = new PriceData();
             Price price = new Price();
+            Trade trade = new Trade();
             var per_low_num = float.Parse(numericUpDown2.Value.ToString());
             var per_high_num = float.Parse(numericUpDown3.Value.ToString());
-            var perPriceList = priceData.PerRange(per_low_num, per_high_num);
-            List<Price> PricePerList = new List<Price>();
-            var sumPerLastPrice = 0.0;
-            DateTime sampleDate = DateTime.Now;
-            foreach (var ucPerData in perPriceList)
+            var per_stockCount = int.Parse(numericUpDown1.Value.ToString());
+            
+
+            foreach (var dateList in priceData.GetDate())
             {
                 
-                if (sampleDate != ucPerData.Date)
-                {
-                    sampleDate = ucPerData.Date;
-                    
-                    //sumPerLastPriceList.Add(sumPerLastPrice);
-                }
-                //sumPerLastPrice += ucPerData.Close;
-                
-                Console.WriteLine(sumPerLastPrice);
-            }
+                perPriceList = priceData.PerRange(dateList, per_low_num, per_high_num, per_stockCount);
 
-            Console.WriteLine();
+                foreach (var test in perPriceList)
+                {
+                    trade.BuyDate = test.Date;
+                    trade.BuyPrice = test.Close;
+                    trade.SellDate = null;
+                    trade.SellPrice = null;
+                    trade.StockId = test.StockId;
+                    trade.StrategyId = 3;
+                    trade.TradeER = 0;
+
+                    //if (test.Date.AddDays(1) == null)
+                    //{
+                    //    trade.TradeER =0;
+                    //}
+                    //trade.TradeER = (TradeERPrice(test.Date.AddDays(1), test.Close) - TradeERPrice(test.Date , test.Close))/ TradeERPrice(test.Date, test.Close);
+
+                    DataRepository.Trade.Insert(trade);
+                }
+            }
+            return perPriceList;
         }
 
+        //public double TradeERPrice(DateTime date , double price)
+        //{
+
+            
+        //}
     }
 }

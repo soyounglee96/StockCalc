@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using StockCalc.Data;
 using StockCalc.Data.Data;
 using StockCalc.Gui.UserControl;
@@ -42,7 +43,7 @@ namespace StockCalc.Gui
             {
                 ucGoldenCross.Instance.BringToFront();
             }
-            lbDis.Text = @"시가총액 순위대로 10개의 종목을 GoldenCross가 발생했을 때 1주씩 매입";
+            lbDis.Text = "시가총액 순위대로 10개의 종목을 GoldenCross가 발생했을 때 1주씩 매입";
 
 
         }
@@ -78,6 +79,11 @@ namespace StockCalc.Gui
                 ucPer.Instance.BringToFront();
             }
             lbDis.Text = @"PER의 범위가 2 - 10 % 인 종목 중 하위 10개를 1주씩 매입";
+
+           
+            TradeData tradeData = new TradeData();
+          
+            dataGridView1.DataSource = tradeData.PerList();
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
@@ -88,20 +94,32 @@ namespace StockCalc.Gui
                 dataGridView1.DataSource = ucgoldenCross.ucGoldenCross_Data(baseMoney);
 
             }
-            else if(panel1.Controls.Contains(ucStockHolding.Instance))
+            else if (panel1.Controls.Contains(ucStockHolding.Instance))
             {
-                
 
             }
-            else
+            else if (panel1.Controls.Contains(ucPer.Instance))
             {
-                ucPer ucper = new ucPer();
-                ucper.ucPer_Data_Price();
-                dataGridView1.DataSource = ucper.ucPer_Data();
+                ucPer per = new ucPer();
+                TradeData TradeData = new TradeData();
+                dataGridView1.DataSource = TradeData.Select();
             }
 
+             
         }
 
-       
+        //public void chartView()
+        //{
+        //    PriceData priceData = new PriceData();
+        //    foreach (var date in priceData.GetDate())
+        //    {
+        //        foreach (var price in priceData.PerRange())
+        //        {
+                    
+        //        }
+        //        chart1.Series[0].Points.AddXY(date, sumPrice);
+        //    }
+            
+        //}
     }
 }

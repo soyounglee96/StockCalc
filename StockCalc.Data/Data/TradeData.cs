@@ -43,6 +43,16 @@ namespace StockCalc.Data.Data
                 select x;
             return query.ToList();
         }
+
+        public List<Trade> PerList()
+        {
+            var context = CreateContext();
+            var query = from x in context.Trades
+                where x.StrategyId == 3
+                      orderby  x.BuyDate
+                select x;
+            return query.ToList();
+        }
     }
 }
 
