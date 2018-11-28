@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using StockCalc.Data;
 using StockCalc.Data.Data;
+using StockCalc.Crawler;
 using StockCalc.Gui.UserControl;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using StockData = StockCalc.Data.Data.StockData;
@@ -25,9 +26,9 @@ namespace StockCalc.Gui
         {
            baseMoney = double.Parse(txtBaseMoney.Text);
         }
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnCollection_Click(object sender, EventArgs e)
         {
-            //sise_market_Data();
+            Crawler.Crawler.sise_market_Data();
         }
 
         private void btnGoldenCross_Click(object sender, EventArgs e)
@@ -97,9 +98,9 @@ namespace StockCalc.Gui
             }
             else
             {
-                ucPer ucper = new ucPer();
-                ucper.ucPer_Data_Price();
-                dataGridView1.DataSource = ucper.ucPer_Data();
+                ucPer per = new ucPer();
+                TradeData tradeData = new TradeData();
+                dataGridView1.DataSource = tradeData.PerList();
             }
 
         }

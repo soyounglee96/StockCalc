@@ -93,6 +93,16 @@ namespace StockCalc.Data.Data
             return (currentValue - baseMoney) / baseMoney;
         }
 
+        public List<Trade> PerList()
+        {
+            var context = CreateContext();
+            var query = from x in context.Trades
+                where x.StrategyId == 3
+                orderby x.BuyDate
+                select x;
+            return query.ToList();
+        }
+
     }
 
 }

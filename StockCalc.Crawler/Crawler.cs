@@ -17,7 +17,7 @@ namespace StockCalc.Crawler
             sise_market_Data();
         }
 
-        private static void sise_market_Data()
+        public static void sise_market_Data()
         {
             WebClient web = new WebClient();
             

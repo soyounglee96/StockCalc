@@ -121,6 +121,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\StockCalc.Crawler\StockCalc.Crawler.csproj">
+      <Project>{c240e506-d57b-4987-bb1e-f0ffb154c94b}</Project>
+      <Name>StockCalc.Crawler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockCalc.Data\StockCalc.Data.csproj">
       <Project>{47674f6c-c48a-44e1-8e15-dbef7cf7ae66}</Project>
       <Name>StockCalc.Data</Name>
