@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCalc.Cui", "StockCalc.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCalc.Gui", "StockCalc.Gui\StockCalc.Gui.csproj", "{0D33485F-3418-44D2-B318-9822ABEDFC94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCalc.Data", "StockCalc.Data\StockCalc.Data.csproj", "{68E42649-DA19-4CDF-BAD9-520644694E9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCalc.Data", "StockCalc.Data\StockCalc.Data.csproj", "{47674F6C-C48A-44E1-8E15-DBEF7CF7AE66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{0D33485F-3418-44D2-B318-9822ABEDFC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D33485F-3418-44D2-B318-9822ABEDFC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D33485F-3418-44D2-B318-9822ABEDFC94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68E42649-DA19-4CDF-BAD9-520644694E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68E42649-DA19-4CDF-BAD9-520644694E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68E42649-DA19-4CDF-BAD9-520644694E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68E42649-DA19-4CDF-BAD9-520644694E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47674F6C-C48A-44E1-8E15-DBEF7CF7AE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47674F6C-C48A-44E1-8E15-DBEF7CF7AE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47674F6C-C48A-44E1-8E15-DBEF7CF7AE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47674F6C-C48A-44E1-8E15-DBEF7CF7AE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
