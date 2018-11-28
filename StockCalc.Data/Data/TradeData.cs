@@ -103,6 +103,30 @@ namespace StockCalc.Data.Data
             return query.ToList();
         }
 
+        public List<Trade> GetStratagy2()
+        {
+            var context = CreateContext();
+
+            var query = from x in context.Trades
+                where x.StrategyId == 2
+                select x;
+
+            return query.ToList();
+        }
+
+        public void DeleteSt2()
+        {
+            var context = CreateContext();
+
+            var query = (from x in context.Trades
+                where x.StrategyId == 2
+                select x).FirstOrDefault();
+            context.Trades.Remove(query);
+
+            return;
+
+        }
+
     }
 
 }

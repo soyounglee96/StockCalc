@@ -93,7 +93,13 @@ namespace StockCalc.Gui
             }
             else if(panel1.Controls.Contains(ucStockHolding.Instance))
             {
-                
+                ucStockHolding stockHolding = new ucStockHolding();
+
+                stockHolding.StockHoldingsInsert();
+
+
+                dataGridView1.DataSource = stockHolding.GetTrades();
+
 
             }
             else

@@ -135,6 +135,18 @@ namespace StockCalc.Data.Data
             return shortMva >= longMva && longMva >= yesterdayShortMva;
         }
 
+        public List<Price> StockHoldings(int selectN, float holdings, DateTime date)
+        {
+            var context = CreateContext();
+
+            var query = (from x in context.Prices
+                where x.StockHolding >= holdings && x.Date == date
+                orderby x.StockHolding descending
+                select x).Take(selectN);
+
+            return query.ToList();
+        }
+
     }
 }
 
